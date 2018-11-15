@@ -49,11 +49,17 @@ public class GsonRequest<T> extends Request<T> {
     protected Response<T> parseNetworkResponse(NetworkResponse response) {
         try {
             String json = new String(response.data,HttpHeaderParser.parseCharset(response.headers));
-            Log.d(TAG,json);
-            return Response.success(gson.fromJson(json, clazz),HttpHeaderParser.parseCacheHeaders(response));
+
+            for (String s:json.split("id")) {
+                Log.d(TAG,s);
+            }
+
+            return Response.success(gson.fromJson("{\"data\":"+json+"}", clazz),HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException e) {
+            Log.d(TAG,"UnsupportedEncodingException");
             return Response.error(new ParseError(e));
         } catch (JsonSyntaxException e) {
+            Log.d(TAG,e.getMessage());
             return Response.error(new ParseError(e));
         }
     }

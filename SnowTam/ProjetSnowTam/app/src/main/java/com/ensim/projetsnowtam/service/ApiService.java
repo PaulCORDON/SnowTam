@@ -22,4 +22,13 @@ public enum ApiService {
 
     }
 
+
+    public void searchAirportLocation(String codeICAO, Response.Listener respListener, Response.ErrorListener errorListener, Context context){
+        final String url="https://v4p4sz5ijk.execute-api.us-east-1.amazonaws.com/anbdata/airports/locations/doc7910?api_key=6500c590-e67d-11e8-be73-c141bfe5369c&airports="+codeICAO+"&format=json";
+        Log.d(TAG,url);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        GsonRequest<DataSearchAirportLocation> request = new GsonRequest<>(url,DataSearchAirportLocation.class,null,respListener,errorListener);
+        queue.add(request);
+
+    }
 }

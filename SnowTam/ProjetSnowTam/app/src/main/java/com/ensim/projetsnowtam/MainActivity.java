@@ -11,6 +11,7 @@ import android.widget.Button;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.ensim.projetsnowtam.service.ApiService;
+import com.ensim.projetsnowtam.service.DataSearchAirportLocation;
 import com.ensim.projetsnowtam.service.DataSearchAirportSnowtam;
 import com.google.android.gms.common.SignInButton;
 
@@ -34,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<String> listAirport = new ArrayList<String>();
                 listAirport.add("ENBO");
                 for (String codeICAO:listAirport) {
-                    Response.Listener<DataSearchAirportSnowtam> responseListener = new Response.Listener<DataSearchAirportSnowtam>() {
+                   /* Response.Listener<DataSearchAirportSnowtam> responseListener = new Response.Listener<DataSearchAirportSnowtam>() {
                         @Override
                         public void onResponse(DataSearchAirportSnowtam response) {
-                            Log.d(TAG,response.toString());
+                            Log.d(TAG,response.getData().get(response.getData().size()-1).getAll());
 
                         }
                     };
@@ -50,6 +51,24 @@ public class MainActivity extends AppCompatActivity {
                     };
                     ApiService.INSTANCE.searchAirportSnowtam(Uri.encode(codeICAO), responseListener, errorListener,MainActivity.this);
 
+*/
+
+
+                    Response.Listener<DataSearchAirportLocation> responseListener = new Response.Listener<DataSearchAirportLocation>() {
+                        @Override
+                        public void onResponse(DataSearchAirportLocation response) {
+                            Log.d(TAG,response.getData().get(response.getData().size()-1).getLocation_Name());
+
+                        }
+                    };
+                    Response.ErrorListener errorListener=new Response.ErrorListener(){
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.d(TAG,"VolleyError");
+                        }
+                    };
+                    ApiService.INSTANCE.searchAirportLocation(Uri.encode(codeICAO), responseListener, errorListener,MainActivity.this);
                 }
 
 

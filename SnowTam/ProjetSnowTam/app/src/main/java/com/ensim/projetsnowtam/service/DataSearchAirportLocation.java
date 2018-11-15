@@ -2,17 +2,16 @@ package com.ensim.projetsnowtam.service;
 
 import java.util.ArrayList;
 
-
-public class DataSearchAirportSnowtam {
+public class DataSearchAirportLocation {
     private int total;
-    private ArrayList<AirportSnowtam> data;
+    private ArrayList<AirportLocation> data;
 
 
-    public ArrayList<AirportSnowtam> getData() {
+    public ArrayList<AirportLocation> getData() {
         return data;
     }
 
-    public void setData(ArrayList<AirportSnowtam> data) {
+    public void setData(ArrayList<AirportLocation> data) {
         this.data = data;
     }
 
@@ -24,6 +23,5 @@ public class DataSearchAirportSnowtam {
     public void setTotal(int total) {
         this.total = total;
     }
-
 
 }
