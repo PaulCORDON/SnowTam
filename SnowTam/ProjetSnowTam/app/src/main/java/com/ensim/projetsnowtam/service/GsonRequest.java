@@ -48,8 +48,8 @@ public class GsonRequest<T> extends Request<T> {
     @Override
     protected Response<T> parseNetworkResponse(NetworkResponse response) {
         try {
-            Log.d(TAG,response.data.toString());
             String json = new String(response.data,HttpHeaderParser.parseCharset(response.headers));
+            Log.d(TAG,json);
             return Response.success(gson.fromJson(json, clazz),HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException e) {
             return Response.error(new ParseError(e));

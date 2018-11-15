@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 ArrayList<String> listAirport = new ArrayList<String>();
-                listAirport.add("ENGM");
+                listAirport.add("ENBO");
                 for (String codeICAO:listAirport) {
                     Response.Listener<DataSearchAirportSnowtam> responseListener = new Response.Listener<DataSearchAirportSnowtam>() {
                         @Override
@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                Intent intent = new Intent(MainActivity.this,MapsActivity.class);
-                startActivity(intent);
+                /*Intent intent = new Intent(MainActivity.this,MapsActivity.class);
+                startActivity(intent);*/
             }
         });
     }
