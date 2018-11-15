@@ -1,5 +1,7 @@
 package com.ensim.projetsnowtam.service;
 
+import android.util.Log;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -13,6 +15,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 public class GsonRequest<T> extends Request<T> {
+    private static final String TAG = "GsonRequest";
     private final Gson gson = new Gson();
     private final Class<T> clazz;
     private final Map<String, String> headers;
@@ -25,8 +28,7 @@ public class GsonRequest<T> extends Request<T> {
      * @param clazz Relevant class object, for Gson's reflection
      * @param headers Map of request headers
      */
-    public GsonRequest(String url, Class<T> clazz, Map<String, String> headers,
-                       Response.Listener<T> listener, Response.ErrorListener errorListener) {
+    public GsonRequest(String url, Class<T> clazz, Map<String, String> headers,Response.Listener<T> listener, Response.ErrorListener errorListener) {
         super(Request.Method.GET, url, errorListener);
         this.clazz = clazz;
         this.headers = headers;
@@ -46,12 +48,9 @@ public class GsonRequest<T> extends Request<T> {
     @Override
     protected Response<T> parseNetworkResponse(NetworkResponse response) {
         try {
-            String json = new String(
-                    response.data,
-                    HttpHeaderParser.parseCharset(response.headers));
-            return Response.success(
-                    gson.fromJson(json, clazz),
-                    HttpHeaderParser.parseCacheHeaders(response));
+            Log.d(TAG,response.data.toString());
+            String json = new String(response.data,HttpHeaderParser.parseCharset(response.headers));
+            return Response.success(gson.fromJson(json, clazz),HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException e) {
             return Response.error(new ParseError(e));
         } catch (JsonSyntaxException e) {

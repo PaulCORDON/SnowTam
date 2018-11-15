@@ -13,31 +13,13 @@ public enum ApiService {
 
 
 
-   /* public void searchAuthor(String artist, Response.Listener respListener, Response.ErrorListener errorListener, Context context){
-        final String url="https://api.deezer.com/search/artist?q="+artist;
+   public void searchAirportSnowtam(String codeICAO, Response.Listener respListener, Response.ErrorListener errorListener, Context context){
+        final String url="https://v4p4sz5ijk.execute-api.us-east-1.amazonaws.com/anbdata/states/notams/notams-realtime-list?api_key=6500c590-e67d-11e8-be73-c141bfe5369c&format=json&criticality=&locations="+codeICAO;
         Log.d(TAG,url);
         RequestQueue queue = Volley.newRequestQueue(context);
-        GsonRequest<DataSearchAuthor> request =
-                new GsonRequest<>(url,DataSearchAuthor.class,null,respListener,errorListener);
+        GsonRequest<DataSearchAirportSnowtam> request = new GsonRequest<>(url,DataSearchAirportSnowtam.class,null,respListener,errorListener);
         queue.add(request);
+
     }
 
-    public void searchAlbum(String name, Response.Listener respListener,Response.ErrorListener errorListener,Context context){
-        final String url="http://api.deezer.com/search/album?q="+name;
-        Log.d(TAG,url);
-        RequestQueue queue = Volley.newRequestQueue(context);
-        GsonRequest<DataSearchListAlbum> request =
-                new GsonRequest<>(url,DataSearchListAlbum.class,null,respListener,errorListener);
-        queue.add(request);
-    }
-
-    public void searchTrack(int id, Response.Listener respListener,Response.ErrorListener errorListener,Context context){
-        final String url="https://api.deezer.com/album/"+id+"/tracks";
-        Log.d(TAG,url);
-        RequestQueue queue = Volley.newRequestQueue(context);
-        GsonRequest<DataSearchAlbum.Tracks> request =
-                new GsonRequest<>(url,DataSearchAlbum.Tracks.class,null,respListener,errorListener);
-        queue.add(request);
-
-    }*/
 }
