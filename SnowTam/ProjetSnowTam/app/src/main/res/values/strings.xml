@@ -6,5 +6,7 @@
     <string name="title_activity_maps">Map</string>
     <string name="CodeICAO">ICOA code</string>
     <string name="google_maps_key">AIzaSyC1FlhgbntKfJRYl53xoaVK9txyMpd9Big</string>
+    <string name="decodeSnowtam">Snowtam decoded</string>
+    <string name="brutSnowtam">Raw snowtam</string>
 
 </resources>
