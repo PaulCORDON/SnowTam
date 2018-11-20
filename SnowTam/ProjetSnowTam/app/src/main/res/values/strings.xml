@@ -9,4 +9,7 @@
     <string name="decodeSnowtam">Snowtam decoded</string>
     <string name="brutSnowtam">Raw snowtam</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
