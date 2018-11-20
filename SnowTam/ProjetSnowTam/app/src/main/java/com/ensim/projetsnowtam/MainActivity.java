@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.ensim.projetsnowtam.service.AirportResult;
 import com.ensim.projetsnowtam.service.ApiService;
 import com.ensim.projetsnowtam.service.DataSearchAirportLocation;
 import com.ensim.projetsnowtam.service.DataSearchAirportSnowtam;
@@ -56,13 +57,17 @@ public class MainActivity extends AppCompatActivity {
 
 
                 ArrayList<String> listAirport = new ArrayList<String>();
+                ArrayList<AirportResult> listAirportResult = new ArrayList<AirportResult>();
                 listAirport.add("ENBO");
                 for (String codeICAO:listAirport) {
-                   /* Response.Listener<DataSearchAirportSnowtam> responseListener = new Response.Listener<DataSearchAirportSnowtam>() {
+                    AirportResult apr = new AirportResult();
+
+
+                    /* Response.Listener<DataSearchAirportSnowtam> responseListener = new Response.Listener<DataSearchAirportSnowtam>() {
                         @Override
                         public void onResponse(DataSearchAirportSnowtam response) {
                             Log.d(TAG,response.getData().get(response.getData().size()-1).getAll());
-
+                            //TODO mettre dans l'objet airport result le snowtam
                         }
                     };
                     Response.ErrorListener errorListener=new Response.ErrorListener(){
@@ -80,8 +85,10 @@ public class MainActivity extends AppCompatActivity {
                     Response.Listener<DataSearchAirportLocation> responseListener = new Response.Listener<DataSearchAirportLocation>() {
                         @Override
                         public void onResponse(DataSearchAirportLocation response) {
-                            Log.d(TAG,response.getData().get(response.getData().size()-1).getLocation_Name());
 
+                            Log.d(TAG,"Latitude = "+response.getData().get(response.getData().size()-1).getLatitude());
+                            Log.d(TAG,"Longitude = "+response.getData().get(response.getData().size()-1).getLongitude());
+                            //TODO mettre dans l'objet airport result la lattitude et longitude
                         }
                     };
                     Response.ErrorListener errorListener=new Response.ErrorListener(){
@@ -92,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                     };
                     ApiService.INSTANCE.searchAirportLocation(Uri.encode(codeICAO), responseListener, errorListener,MainActivity.this);
+
+                    listAirportResult.add(apr);
                 }
 
 
