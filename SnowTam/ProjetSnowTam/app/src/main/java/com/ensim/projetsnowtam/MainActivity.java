@@ -59,11 +59,11 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<String> listAirport = new ArrayList<String>();
                 ArrayList<AirportResult> listAirportResult = new ArrayList<AirportResult>();
                 listAirport.add("ENBO");
-                for (String codeICAO:listAirport) {
+              /*  for (String codeICAO:listAirport) {
                     AirportResult apr = new AirportResult();
 
 
-                    /* Response.Listener<DataSearchAirportSnowtam> responseListener = new Response.Listener<DataSearchAirportSnowtam>() {
+                     Response.Listener<DataSearchAirportSnowtam> responseListener = new Response.Listener<DataSearchAirportSnowtam>() {
                         @Override
                         public void onResponse(DataSearchAirportSnowtam response) {
                             Log.d(TAG,response.getData().get(response.getData().size()-1).getAll());
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     };
                     ApiService.INSTANCE.searchAirportSnowtam(Uri.encode(codeICAO), responseListener, errorListener,MainActivity.this);
 
-*/
+
 
 
                     Response.Listener<DataSearchAirportLocation> responseListener = new Response.Listener<DataSearchAirportLocation>() {
@@ -101,12 +101,15 @@ public class MainActivity extends AppCompatActivity {
                     ApiService.INSTANCE.searchAirportLocation(Uri.encode(codeICAO), responseListener, errorListener,MainActivity.this);
 
                     listAirportResult.add(apr);
-                }
+                }*/
 
-
-
+                AirportResult apr = new AirportResult("ENBR",60.2933333,5.2180556,"SWEN0332 ENBR 11191137 \n(SNOWTAM 0332\nA) ENBR\nB) 11191137 C) 17\nF) NIL/NIL/NIL H) 5/5/5\nN) ALL REPORTED TWYS/NIL\nR) DE ICING N/2  ALL REMAINING APRONS/NIL)\nCREATED: 19 Nov 2018 11:55:00 \nSOURCE: EUECYIYN");
+                listAirportResult.add(apr);
 
                 Intent intent = new Intent(MainActivity.this,MapsActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("listAirPort",listAirportResult);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
