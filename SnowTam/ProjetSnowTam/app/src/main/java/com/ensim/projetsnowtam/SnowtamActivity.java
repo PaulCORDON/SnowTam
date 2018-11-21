@@ -1,58 +1,54 @@
 package com.ensim.projetsnowtam;
 
 import android.content.Intent;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.util.Log;
 
 import com.ensim.projetsnowtam.service.AirportResult;
 
 import java.util.ArrayList;
 
-public class SnowtamActivity extends AppCompatActivity {
+public class SnowtamActivity extends FragmentActivity {
+    private static final String TAG = "SnowtamActivity";
+    private ViewPager viewPager;
+    private SnowtamFragmentAdapter adapter;
     private ArrayList<AirportResult> listAirportResult = new ArrayList<AirportResult>();
     private Integer index = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_snowtam);
+
         Intent intent = getIntent();
         if (intent != null){
             listAirportResult = intent.getParcelableArrayListExtra("listAirPort");
             index = intent.getIntExtra("index",0);
+            Log.d(TAG,"nombre d'aéroports : "+listAirportResult.size());
         }
 
+        viewPager = findViewById(R.id.pager);
+        adapter = new SnowtamFragmentAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+    }
+    private class SnowtamFragmentAdapter extends FragmentStatePagerAdapter {
+        public SnowtamFragmentAdapter(FragmentManager fm) {
+            super(fm);
+        }
 
-        final Button decodedBtn = (Button) findViewById(R.id.decodeBtn);
-        final Button rawBtn = (Button)findViewById(R.id.brutBtn);
+        @Override
+        public Fragment getItem(int position) {
+            return SnowtamFragment.newInstance(listAirportResult.get((position+index)%listAirportResult.size()).getICAO_Code(),listAirportResult.get((position+index)%listAirportResult.size()).getSnowtam());
+        }
 
-        final TextView title =(TextView) findViewById(R.id.title);
-        final TextView decodeText = (TextView) findViewById(R.id.textDecoded);
-        final TextView rawText = (TextView) findViewById(R.id.textRaw);
-
-        final ConstraintLayout constraintLayout =(ConstraintLayout) findViewById(R.id.constraint);
-
-
-
-        title.setText(listAirportResult.get(index).getICAO_Code());
-
-
-        decodedBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                decodeText.setVisibility(View.VISIBLE);
-                rawText.setVisibility(View.GONE);
-            }
-        });
-        rawBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                decodeText.setVisibility(View.GONE);
-                rawText.setVisibility(View.VISIBLE);
-            }
-        });
+        @Override
+        public int getCount() {
+            Log.d(TAG,"nombre de pages : "+listAirportResult.size());
+            return listAirportResult.size();
+        }
     }
 }
