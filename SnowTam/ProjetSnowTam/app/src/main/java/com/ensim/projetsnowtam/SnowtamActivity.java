@@ -1,19 +1,20 @@
 package com.ensim.projetsnowtam;
 
 import android.content.Intent;
-import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.util.Log;
 
 import com.ensim.projetsnowtam.service.AirportResult;
 
 import java.util.ArrayList;
 
-public class SnowtamActivity extends AppCompatActivity {
+public class SnowtamActivity extends FragmentActivity {
+    private static final String TAG = "SnowtamActivity";
     private ViewPager viewPager;
     private SnowtamFragmentAdapter adapter;
     private ArrayList<AirportResult> listAirportResult = new ArrayList<AirportResult>();
@@ -22,16 +23,32 @@ public class SnowtamActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_snowtam);
-        viewPager = findViewById(R.id.pager);
-        adapter = new SnowtamFragmentAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(adapter);
 
         Intent intent = getIntent();
         if (intent != null){
             listAirportResult = intent.getParcelableArrayListExtra("listAirPort");
             index = intent.getIntExtra("index",0);
+            Log.d(TAG,"nombre d'aéroports : "+listAirportResult.size());
         }
 
+        viewPager = findViewById(R.id.pager);
+        adapter = new SnowtamFragmentAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+    }
+    private class SnowtamFragmentAdapter extends FragmentStatePagerAdapter {
+        public SnowtamFragmentAdapter(FragmentManager fm) {
+            super(fm);
+        }
 
+        @Override
+        public Fragment getItem(int position) {
+            return SnowtamFragment.newInstance(listAirportResult.get((position+index)%listAirportResult.size()).getICAO_Code(),listAirportResult.get((position+index)%listAirportResult.size()).getSnowtam());
+        }
+
+        @Override
+        public int getCount() {
+            Log.d(TAG,"nombre de pages : "+listAirportResult.size());
+            return listAirportResult.size();
+        }
     }
 }
