@@ -19,6 +19,7 @@ import com.ensim.projetsnowtam.service.DataSearchAirportLocation;
 import com.ensim.projetsnowtam.service.DataSearchAirportSnowtam;
 import com.google.android.gms.common.SignInButton;
 
+import java.io.Console;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,8 +27,18 @@ public class MainActivity extends AppCompatActivity {
 
     public int nbrAirport = 1;
 
+    public int[] choixAirport = new int[6];
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        choixAirport[0] = 1;
+        choixAirport[1] = 2;
+        choixAirport[2] = 3;
+        choixAirport[3] = 4;
+        choixAirport[4] = 5;
+        choixAirport[5] = 6;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button search = (Button)findViewById(R.id.searchBtn);
@@ -46,9 +57,18 @@ public class MainActivity extends AppCompatActivity {
         final ImageView close5 = (ImageView) findViewById(R.id.close5);
         final ImageView close6 = (ImageView) findViewById(R.id.close6);
 
-
+        final ImageView imgAirport1 = (ImageView) findViewById(R.id.imgAirport1);
+        final ImageView imgAirport2 = (ImageView) findViewById(R.id.imgAirport2);
+        final ImageView imgAirport3 = (ImageView) findViewById(R.id.imgAirport3);
+        final ImageView imgAirport4 = (ImageView) findViewById(R.id.imgAirport4);
+        final ImageView imgAirport5 = (ImageView) findViewById(R.id.imgAirport5);
+        final ImageView imgAirport6 = (ImageView) findViewById(R.id.imgAirport6);
 
         final Button ajout = (Button) findViewById(R.id.Ajouter);
+
+
+
+
 
 
         search.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +78,34 @@ public class MainActivity extends AppCompatActivity {
 
                 ArrayList<String> listAirport = new ArrayList<String>();
                 ArrayList<AirportResult> listAirportResult = new ArrayList<AirportResult>();
+
+                /*
+                for(int i = 0;i<nbrAirport;i++){
+                    listAirport.add("");
+                }
+                if(airport1.getVisibility() == View.VISIBLE ){
+                    listAirport.add(choixAirport[0]-1,airport1.getText().toString());
+                }
+                if(airport2.getVisibility() == View.VISIBLE){
+                    listAirport.add(choixAirport[1]-1,airport2.getText().toString());
+                }
+                if(airport3.getVisibility() == View.VISIBLE){
+                    listAirport.add(choixAirport[2]-1,airport3.getText().toString());
+                }
+                if(airport4.getVisibility() == View.VISIBLE){
+                    listAirport.add(choixAirport[3]-1,airport4.getText().toString());
+                }
+                if(airport5.getVisibility() == View.VISIBLE){
+                    listAirport.add(choixAirport[4]-1,airport5.getText().toString());
+                }
+                if(airport6.getVisibility() == View.VISIBLE){
+                    listAirport.add(choixAirport[5]-1,airport6.getText().toString());
+                }
+
+
+
+                Log.d("listAirport",listAirport.get(0) +"___"+ listAirport.get(1) +"___"+ listAirport.get(2));
+*/
                 listAirport.add("ENBO");
               /*  for (String codeICAO:listAirport) {
                     AirportResult apr = new AirportResult();
@@ -113,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
                 bundle.putParcelableArrayList("listAirPort",listAirportResult);
                 intent.putExtras(bundle);
                 startActivity(intent);
+                
             }
         });
 
@@ -124,23 +173,28 @@ public class MainActivity extends AppCompatActivity {
                 if (nbrAirport == 2){
                     airport2.setVisibility(View.VISIBLE);
                     close2.setVisibility(View.VISIBLE);
+                    imgAirport2.setVisibility((View.VISIBLE));
                 }
                 if (nbrAirport == 3){
                     airport3.setVisibility(View.VISIBLE);
                     close3.setVisibility(View.VISIBLE);
+                    imgAirport3.setVisibility((View.VISIBLE));
                 }
                 if (nbrAirport == 4){
                     airport4.setVisibility(View.VISIBLE);
                     close4.setVisibility(View.VISIBLE);
+                    imgAirport4.setVisibility((View.VISIBLE));
                 }
                 if (nbrAirport == 5){
                     airport5.setVisibility(View.VISIBLE);
                     close5.setVisibility(View.VISIBLE);
+                    imgAirport5.setVisibility((View.VISIBLE));
                 }
                 if (nbrAirport == 6){
                     airport6.setVisibility(View.VISIBLE);
                     close6.setVisibility(View.VISIBLE);
                     ajout.setVisibility(View.INVISIBLE);
+                    imgAirport6.setVisibility((View.VISIBLE));
                 }
             }
         });
@@ -152,17 +206,20 @@ public class MainActivity extends AppCompatActivity {
                     nbrAirport --;
                     airport2.setVisibility(View.GONE);
                     close2.setVisibility(View.GONE);
+                    imgAirport2.setVisibility((View.GONE));
                 }
                 if (nbrAirport == 3 ){
                     nbrAirport --;
                     airport3.setVisibility(View.GONE);
                     close3.setVisibility(View.GONE);
+                    imgAirport3.setVisibility((View.GONE));
                     airport2.setText(airport3.getText());
                 }
                 if (nbrAirport == 4 ){
                     nbrAirport --;
                     airport4.setVisibility(View.GONE);
                     close4.setVisibility(View.GONE);
+                    imgAirport4.setVisibility((View.GONE));
                     airport2.setText(airport3.getText());
                     airport3.setText(airport4.getText());
                 }
@@ -170,6 +227,7 @@ public class MainActivity extends AppCompatActivity {
                     nbrAirport --;
                     airport5.setVisibility(View.GONE);
                     close5.setVisibility(View.GONE);
+                    imgAirport5.setVisibility((View.GONE));
                     airport2.setText(airport3.getText());
                     airport3.setText(airport4.getText());
                     airport4.setText(airport5.getText());
@@ -178,6 +236,7 @@ public class MainActivity extends AppCompatActivity {
                     nbrAirport --;
                     airport6.setVisibility(View.GONE);
                     close6.setVisibility(View.GONE);
+                    imgAirport6.setVisibility((View.GONE));
                     airport2.setText(airport3.getText());
                     airport3.setText(airport4.getText());
                     airport4.setText(airport5.getText());
@@ -196,17 +255,20 @@ public class MainActivity extends AppCompatActivity {
                     nbrAirport --;
                     airport3.setVisibility(View.GONE);
                     close3.setVisibility(View.GONE);
+                    imgAirport3.setVisibility((View.GONE));
                 }
                 if (nbrAirport == 4 ){
                     nbrAirport --;
                     airport4.setVisibility(View.GONE);
                     close4.setVisibility(View.GONE);
+                    imgAirport4.setVisibility((View.GONE));
                     airport3.setText(airport4.getText());
                 }
                 if (nbrAirport == 5 ){
                     nbrAirport --;
                     airport5.setVisibility(View.GONE);
                     close5.setVisibility(View.GONE);
+                    imgAirport5.setVisibility((View.GONE));
                     airport3.setText(airport4.getText());
                     airport4.setText(airport5.getText());
                 }
@@ -214,6 +276,7 @@ public class MainActivity extends AppCompatActivity {
                     nbrAirport --;
                     airport6.setVisibility(View.GONE);
                     close6.setVisibility(View.GONE);
+                    imgAirport6.setVisibility((View.GONE));
                     airport3.setText(airport4.getText());
                     airport4.setText(airport5.getText());
                     airport5.setText(airport6.getText());
@@ -230,17 +293,20 @@ public class MainActivity extends AppCompatActivity {
                     nbrAirport --;
                     airport4.setVisibility(View.GONE);
                     close4.setVisibility(View.GONE);
+                    imgAirport4.setVisibility((View.GONE));
                 }
                 if (nbrAirport == 5 ){
                     nbrAirport --;
                     airport5.setVisibility(View.GONE);
                     close5.setVisibility(View.GONE);
+                    imgAirport5.setVisibility((View.GONE));
                     airport4.setText(airport5.getText());
                 }
                 if (nbrAirport == 6 ){
                     nbrAirport --;
                     airport6.setVisibility(View.GONE);
                     close6.setVisibility(View.GONE);
+                    imgAirport6.setVisibility((View.GONE));
                     airport4.setText(airport5.getText());
                     airport5.setText(airport6.getText());
                     ajout.setVisibility(View.VISIBLE);
@@ -256,11 +322,13 @@ public class MainActivity extends AppCompatActivity {
                     nbrAirport --;
                     airport5.setVisibility(View.GONE);
                     close5.setVisibility(View.GONE);
+                    imgAirport5.setVisibility((View.GONE));
                 }
                 if (nbrAirport == 6 ){
                     nbrAirport --;
                     airport6.setVisibility(View.GONE);
                     close6.setVisibility(View.GONE);
+                    imgAirport6.setVisibility((View.GONE));
                     airport5.setText(airport6.getText());
                     ajout.setVisibility(View.VISIBLE);
                 }
@@ -271,10 +339,112 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.w("supprimer" , "on supprime un aeroport" + nbrAirport);
-                airport5.setVisibility(View.GONE);
-                close5.setVisibility(View.GONE);
+                nbrAirport --;
+                airport6.setVisibility(View.GONE);
+                close6.setVisibility(View.GONE);
+                imgAirport6.setVisibility((View.GONE));
                 ajout.setVisibility(View.VISIBLE);
             }
         });
+
+
+        imgAirport1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.w("Edit Ordre" , "on change l'ordre" );
+                choixAirport[0]++;
+                if(choixAirport[0]==nbrAirport+1){
+                    choixAirport[0] = 1;
+                }
+                imgAirport1.setImageResource(returnIdImage(choixAirport[0]));
+            }
+        });
+        imgAirport2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.w("Edit Ordre" , "on change l'ordre" );
+                choixAirport[1]++;
+                if(choixAirport[1]==nbrAirport+1){
+                    choixAirport[1] = 1;
+                }
+                imgAirport2.setImageResource(returnIdImage(choixAirport[1]));
+            }
+        });
+        imgAirport3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.w("Edit Ordre" , "on change l'ordre" );
+                choixAirport[2]++;
+                if(choixAirport[2]==nbrAirport+1){
+                    choixAirport[2] = 1;
+                }
+                imgAirport3.setImageResource(returnIdImage(choixAirport[2]));
+            }
+        });
+        imgAirport4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.w("Edit Ordre" , "on change l'ordre" );
+                choixAirport[3]++;
+                if(choixAirport[3]==nbrAirport+1){
+                    choixAirport[3] = 1;
+                }
+                imgAirport4.setImageResource(returnIdImage(choixAirport[3]));
+            }
+        });
+        imgAirport5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.w("Edit Ordre" , "on change l'ordre" );
+                choixAirport[4]++;
+                if(choixAirport[4]==nbrAirport+1){
+                    choixAirport[4] = 1;
+                }
+                imgAirport5.setImageResource(returnIdImage(choixAirport[4]));
+            }
+        });
+        imgAirport6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.w("Edit Ordre" , "on change l'ordre" );
+                choixAirport[5]++;
+                if(choixAirport[5]==nbrAirport+1){
+                    choixAirport[5] = 1;
+                }
+                imgAirport6.setImageResource(returnIdImage(choixAirport[5]));
+            }
+        });
+
     }
+
+
+    int estDansListe (int[] tableau, int i){
+        for (int a : tableau){
+            if(a == i){
+                return a;
+            }
+        }
+        return 0;
+    }
+
+    int returnIdImage(int a){
+            switch (a){
+                case 1:
+                    return R.drawable.departures;
+                case 2:
+                    return R.drawable.arrivals;
+                case 3:
+                    return R.drawable.escales1;
+                case 4:
+                    return R.drawable.escales2;
+                case 5:
+                    return R.drawable.escales3;
+                case 6:
+                    return R.drawable.escales4;
+                default:
+                    return  R.drawable.escales;
+            }
+    }
+
+
 }
