@@ -21,6 +21,7 @@ import com.google.android.gms.common.SignInButton;
 
 import java.io.Console;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -74,8 +75,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
+/* liste des aeroport qui sont sur le trajet (à dessiner) */
                 final ArrayList<String> listAirport = new ArrayList<String>();
+/* liste des aeroports pour lequelles on veut seulement des informations */
+                final ArrayList<String> listAirportInfos = new ArrayList<String>();
                 final ArrayList<AirportResult> listAirportResult = new ArrayList<AirportResult>();
 
 
@@ -84,8 +87,10 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("tableau" ,"value" + choixAirport[i]);
                 }
                 if(airport1.getVisibility() == View.VISIBLE ){
+                    Log.d("add" , "airport 1 : " + choixAirport[0]);
                     if (choixAirport[0]-1>=nbrAirport){
-                        listAirport.add(airport1.getText().toString());
+                        listAirportInfos.add(airport1.getText().toString());
+                        Log.d("add" , "airport 1 ");
                     }
                     else{
                         listAirport.set(choixAirport[0]-1,airport1.getText().toString());
@@ -93,16 +98,22 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 if(airport2.getVisibility() == View.VISIBLE){
+
+                    Log.d("add" , "airport 2 : " + choixAirport[1]);
                     if (choixAirport[1]-1>=nbrAirport){
-                        listAirport.add(airport2.getText().toString());
+                        listAirportInfos.add(airport2.getText().toString());
+                        Log.d("add" , "airport 2 ");
+
                     }
                     else {
                         listAirport.set(choixAirport[1] - 1, airport2.getText().toString());
                     }
                 }
                 if(airport3.getVisibility() == View.VISIBLE){
+
+                    Log.d("add" , "airport 3 : " + choixAirport[2]);
                     if (choixAirport[2]-1>=nbrAirport){
-                        listAirport.add(airport3.getText().toString());
+                        listAirportInfos.add(airport3.getText().toString());
                     }
                     else{
                         listAirport.set(choixAirport[2]-1,airport3.getText().toString());
@@ -111,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(airport4.getVisibility() == View.VISIBLE){
                     if (choixAirport[3]-1>=nbrAirport){
-                        listAirport.add(airport4.getText().toString());
+                        listAirportInfos.add(airport4.getText().toString());
                     }
                     else {
                         listAirport.set(choixAirport[3]-1,airport4.getText().toString());
@@ -120,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(airport5.getVisibility() == View.VISIBLE){
                     if (choixAirport[4]-1>=nbrAirport){
-                        listAirport.add(airport5.getText().toString());
+                        listAirportInfos.add(airport5.getText().toString());
                     }
                     else {
                         listAirport.set(choixAirport[4]-1,airport5.getText().toString());}
@@ -128,22 +139,30 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(airport6.getVisibility() == View.VISIBLE){
                     if (choixAirport[5]-1>=nbrAirport){
-                        listAirport.add(airport6.getText().toString());
+                        listAirportInfos.add(airport6.getText().toString());
                     }
                     else {
                         listAirport.set(choixAirport[5]-1,airport6.getText().toString());
                     }
                 }
 
-if(listAirport.size()>=2){
+
+
+
+                if(listAirport.size()>2){
     listAirport.add(listAirport.get(1));
     listAirport.remove(1);
-}
 
+}
+                listAirport.removeAll(Arrays.asList(null,""));
                 Log.d("taille tableau", ""+listAirport.size());
 
-                //Log.d("listAirport",listAirport.get(0) +"___"+ listAirport.get(1) +"___"+ listAirport.get(2));
-
+                for(String s : listAirport){
+                    Log.d("listAirport" , " Airpot trajet : " + s);
+                }
+                for(String s : listAirportInfos){
+                    Log.d("listAirportInfo" , " Airpot Info : " + s);
+                }
                 //listAirport.add("ENBO");
 
                 Log.d(TAG,listAirport.size()+"SSSSSSSSSSSSIIIIIIIIIIZZZZZ");
