@@ -236,8 +236,8 @@ public class MainActivity extends AppCompatActivity {
                                     Log.d(TAG,"reponse vide pour "+codeICAO);
                                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                                     builder.setCancelable(true);
-                                    builder.setTitle("False ICAO code");
-                                    builder.setMessage(codeICAO+" is not de ICAO code");
+                                    builder.setTitle(getString(R.string.FalseICAOcode));
+                                    builder.setMessage(codeICAO+" "+getString(R.string.isNotAICAOcode));
                                     builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {

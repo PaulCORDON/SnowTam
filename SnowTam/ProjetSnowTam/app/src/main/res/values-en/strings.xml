@@ -13,6 +13,8 @@
     <string name="cryptage">See raw snowtam first : </string>
     <string name="mapFirst">See the whole travel first : </string>
     <string name="save">Save</string>
+    <string name="FalseICAOcode">False ICAO code</string>
+    <string name="isNotAICAOcode">is not a  correct ICAO code</string>
 
     <string-array name="langues">
         <item>English</item>
