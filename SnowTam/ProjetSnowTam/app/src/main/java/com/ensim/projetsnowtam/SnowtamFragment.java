@@ -19,13 +19,15 @@ public class SnowtamFragment extends Fragment {
     public SnowtamFragment() {
         // Required empty public constructor
     }
-    public static SnowtamFragment newInstance(String title,String snowtamBrut) {
+    public static SnowtamFragment newInstance(String title,String snowtamBrut, String snowtamDecoded) {
         SnowtamFragment fragment = new SnowtamFragment();
         Bundle args = new Bundle();
         Log.d(TAG,title);
         Log.d(TAG,snowtamBrut);
+        Log.d(TAG,snowtamDecoded);
         args.putString("title", title);
         args.putString("SnowtamBrut",snowtamBrut);
+        args.putString("SnowtamDecoded",snowtamDecoded);
         fragment.setArguments(args);
         return fragment;
     }
@@ -43,8 +45,10 @@ public class SnowtamFragment extends Fragment {
         final TextView rawText = (TextView) view.findViewById(R.id.textRaw);
         String title1 = getArguments().getString("title");
         String snowtamBrut = getArguments().getString("SnowtamBrut");
+        String snowtamDecoded = getArguments().getString("SnowtamDecoded");
         title.setText(title1);
         rawText.setText(snowtamBrut);
+        decodeText.setText(snowtamDecoded);
         decodedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

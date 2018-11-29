@@ -8,15 +8,17 @@ public class AirportResult implements Parcelable{
     private double latitude;
     private double longitude;
     private String snowtam;
+    private String snowtamDecoded;
 
     public AirportResult() {
     }
 
-    public AirportResult(String ICAO_Code, double latitude, double longitude, String snowtam) {
+    public AirportResult(String ICAO_Code, double latitude, double longitude, String snowtam,String snowtamDecoded) {
         this.ICAO_Code = ICAO_Code;
         this.latitude = latitude;
         this.longitude = longitude;
         this.snowtam = snowtam;
+        this.snowtamDecoded=snowtamDecoded;
     }
 
 
@@ -52,7 +54,39 @@ public class AirportResult implements Parcelable{
     public void setSnowtam(String snowtam) {
         this.snowtam = snowtam;
     }
+    public String getSnowtamDecoded() {
+        return snowtamDecoded;
+    }
 
+    public void setSnowtamDecoded(String snowtam) {
+        this.snowtamDecoded="";
+        for(String s : snowtam.split("\n")){
+            if(s.contains("A) ")){
+                this.snowtamDecoded = this.snowtamDecoded+"\nA) ";
+            }
+            else if(s.contains("B) ")){
+                this.snowtamDecoded = this.snowtamDecoded+"\nB) ";
+            }
+            else if(s.contains("C) ")){
+                this.snowtamDecoded = this.snowtamDecoded+"\nC) ";
+            }
+            else if(s.contains("D) ")){
+                this.snowtamDecoded = this.snowtamDecoded+"\nD) ";
+            }
+            else if(s.contains("E) ")){
+                this.snowtamDecoded = this.snowtamDecoded+"\nE) ";
+            }
+            else if(s.contains("F) ")){
+                this.snowtamDecoded = this.snowtamDecoded+"\nF) ";
+            }
+            else if(s.contains("G) ")){
+                this.snowtamDecoded = this.snowtamDecoded+"\nG) ";
+            }
+            else{
+                this.snowtamDecoded = this.snowtamDecoded+s;
+            }
+        }
+    }
 
 
 
@@ -61,6 +95,7 @@ public class AirportResult implements Parcelable{
         latitude = in.readDouble();
         longitude = in.readDouble();
         snowtam = in.readString();
+        snowtamDecoded=in.readString();
     }
 
     public static final Creator<AirportResult> CREATOR = new Creator<AirportResult>() {
@@ -85,6 +120,7 @@ public class AirportResult implements Parcelable{
         parcel.writeDouble(latitude);
         parcel.writeDouble(longitude);
         parcel.writeString(snowtam);
+        parcel.writeString(snowtamDecoded);
     }
 
 

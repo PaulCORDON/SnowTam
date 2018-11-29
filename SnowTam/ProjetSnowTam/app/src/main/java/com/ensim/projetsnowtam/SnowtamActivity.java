@@ -42,7 +42,8 @@ public class SnowtamActivity extends FragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return SnowtamFragment.newInstance(listAirportResult.get((position+index)%listAirportResult.size()).getICAO_Code(),listAirportResult.get((position+index)%listAirportResult.size()).getSnowtam());
+
+            return SnowtamFragment.newInstance(listAirportResult.get((position+index)%listAirportResult.size()).getICAO_Code(),listAirportResult.get((position+index)%listAirportResult.size()).getSnowtam(),listAirportResult.get((position+index)%listAirportResult.size()).getSnowtamDecoded());
         }
 
         @Override
