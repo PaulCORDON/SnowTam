@@ -90,6 +90,23 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
+        android:id="@+id/airport4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/CodeICAO"
+
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/close4"
+        app:layout_constraintTop_toBottomOf="@+id/airport3"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
         android:id="@+id/airport5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -121,23 +138,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/close6"
         app:layout_constraintTop_toBottomOf="@+id/airport5"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
-        android:id="@+id/airport4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/CodeICAO"
-
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/close4"
-        app:layout_constraintTop_toBottomOf="@+id/airport3"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
@@ -292,7 +292,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/airport5"
         app:layout_constraintTop_toTopOf="@+id/airport5"
-        app:srcCompat="@drawable/escales2" />
+        app:srcCompat="@drawable/escales3" />
 
     <ImageView
         android:id="@+id/imgAirport6"
@@ -308,7 +308,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/airport6"
         app:layout_constraintTop_toTopOf="@+id/airport6"
-        app:srcCompat="@drawable/escales3" />
+        app:srcCompat="@drawable/escales4" />
 
     <ImageView
         android:id="@+id/imgAirport4"
@@ -323,7 +323,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/airport4"
         app:layout_constraintTop_toTopOf="@+id/airport4"
-        app:srcCompat="@drawable/escales4" />
+        app:srcCompat="@drawable/escales2" />
 
 
 </android.support.constraint.ConstraintLayout>
