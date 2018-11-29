@@ -56,7 +56,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Add a marker in Sydney and move the camera
         for (AirportResult apr: listAirportResult) {
             LatLng currentAirport = new LatLng(apr.getLatitude(), apr.getLongitude());
+
+            //TODO ajouter un if pour vérifier si l'aéroport est sur le trajet
             polylineOptions.add(currentAirport);
+
+
             mMap.addMarker(new MarkerOptions().position(currentAirport).title(apr.getICAO_Code()));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(currentAirport));
 

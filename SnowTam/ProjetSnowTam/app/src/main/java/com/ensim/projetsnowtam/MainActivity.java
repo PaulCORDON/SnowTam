@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     public int nbrAirport = 1;
-
     public int[] choixAirport = new int[6];
 
 
@@ -76,11 +75,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                ArrayList<String> listAirport = new ArrayList<String>();
-                ArrayList<AirportResult> listAirportResult = new ArrayList<AirportResult>();
+                final ArrayList<String> listAirport = new ArrayList<String>();
+                final ArrayList<AirportResult> listAirportResult = new ArrayList<AirportResult>();
 
-                /*
-                for(int i = 0;i<nbrAirport;i++){
+
+                /*for(int i = 0;i<nbrAirport;i++){
                     listAirport.add("");
                 }
                 if(airport1.getVisibility() == View.VISIBLE ){
@@ -100,67 +99,70 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(airport6.getVisibility() == View.VISIBLE){
                     listAirport.add(choixAirport[5]-1,airport6.getText().toString());
-                }
-
-
-
-                Log.d("listAirport",listAirport.get(0) +"___"+ listAirport.get(1) +"___"+ listAirport.get(2));
-*/
-                listAirport.add("ENBO");
-              /*  for (String codeICAO:listAirport) {
-                    AirportResult apr = new AirportResult();
-
-
-                     Response.Listener<DataSearchAirportSnowtam> responseListener = new Response.Listener<DataSearchAirportSnowtam>() {
-                        @Override
-                        public void onResponse(DataSearchAirportSnowtam response) {
-                            Log.d(TAG,response.getData().get(response.getData().size()-1).getAll());
-                            //TODO mettre dans l'objet airport result le snowtam
-                        }
-                    };
-                    Response.ErrorListener errorListener=new Response.ErrorListener(){
-
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.d(TAG,"VolleyError");
-                        }
-                    };
-                    ApiService.INSTANCE.searchAirportSnowtam(Uri.encode(codeICAO), responseListener, errorListener,MainActivity.this);
-
-
-
-
-                    Response.Listener<DataSearchAirportLocation> responseListener = new Response.Listener<DataSearchAirportLocation>() {
-                        @Override
-                        public void onResponse(DataSearchAirportLocation response) {
-
-                            Log.d(TAG,"Latitude = "+response.getData().get(response.getData().size()-1).getLatitude());
-                            Log.d(TAG,"Longitude = "+response.getData().get(response.getData().size()-1).getLongitude());
-                            //TODO mettre dans l'objet airport result la lattitude et longitude
-                        }
-                    };
-                    Response.ErrorListener errorListener=new Response.ErrorListener(){
-
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.d(TAG,"VolleyError");
-                        }
-                    };
-                    ApiService.INSTANCE.searchAirportLocation(Uri.encode(codeICAO), responseListener, errorListener,MainActivity.this);
-
-                    listAirportResult.add(apr);
                 }*/
 
-                AirportResult apr = new AirportResult("ENBR",60.2933333,5.2180556,"SWEN0332 ENBR 11191137 \n(SNOWTAM 0332\nA) ENBR\nB) 11191137 C) 17\nF) NIL/NIL/NIL H) 5/5/5\nN) ALL REPORTED TWYS/NIL\nR) DE ICING N/2  ALL REMAINING APRONS/NIL)\nCREATED: 19 Nov 2018 11:55:00 \nSOURCE: EUECYIYN");
+
+
+                //Log.d("listAirport",listAirport.get(0) +"___"+ listAirport.get(1) +"___"+ listAirport.get(2));
+
+                //listAirport.add("ENBO");
+                int i = listAirport.size();
+                for (String codeICAO:listAirport) {
+                    i=i-1;
+                    if(!codeICAO.isEmpty()){
+                        Response.Listener<DataSearchAirportSnowtam> responseListener = new Response.Listener<DataSearchAirportSnowtam>() {
+                            @Override
+                            public void onResponse(DataSearchAirportSnowtam response) {
+
+                                Log.d(TAG,response.getData().get(response.getData().size()-1).getAll());
+                                listAirportResult.add(new AirportResult());
+                                listAirportResult.get(listAirportResult.size()-1).setSnowtam(response.getData().get(response.getData().size()-1).getAll());
+
+                                if(!response.getData().isEmpty()){
+                                    String codeICAO2=response.getData().get(response.getData().size()-1).getLocation();
+                                    Response.Listener<DataSearchAirportLocation> responseListener2 = new Response.Listener<DataSearchAirportLocation>() {
+                                        @Override
+                                        public void onResponse(DataSearchAirportLocation response) {
+                                            Log.d(TAG,"Latitude = "+response.getData().get(response.getData().size()-1).getLatitude());
+                                            Log.d(TAG,"Longitude = "+response.getData().get(response.getData().size()-1).getLongitude());
+                                            listAirportResult.get(listAirportResult.size()-1).setLatitude(response.getData().get(response.getData().size()-1).getLatitude());
+                                            listAirportResult.get(listAirportResult.size()-1).setLongitude(response.getData().get(response.getData().size()-1).getLongitude());
+                                        }
+                                    };
+                                    Response.ErrorListener errorListener2=new Response.ErrorListener(){
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            Log.d(TAG,"VolleyError");
+                                        }
+                                    };
+                                    ApiService.INSTANCE.searchAirportLocation(Uri.encode(codeICAO2), responseListener2, errorListener2,MainActivity.this);
+                                }
+                            }
+                        };
+                        Response.ErrorListener errorListener=new Response.ErrorListener(){
+
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.d(TAG,"VolleyError");
+                            }
+                        };
+                        ApiService.INSTANCE.searchAirportSnowtam(Uri.encode(codeICAO), responseListener, errorListener,MainActivity.this);
+                    }
+                    if(i==0 && listAirportResult.get(i-1).getLatitude()!=0 && listAirportResult.get(i-1).getLongitude()!=0){
+                        Log.d(TAG,listAirportResult.size()+"");
+                        Intent intent = new Intent(MainActivity.this,MapsActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelableArrayList("listAirPort",listAirportResult);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    }
+                }
+
+                /*AirportResult apr = new AirportResult("ENBR",60.2933333,5.2180556,"SWEN0332 ENBR 11191137 \n(SNOWTAM 0332\nA) ENBR\nB) 11191137 C) 17\nF) NIL/NIL/NIL H) 5/5/5\nN) ALL REPORTED TWYS/NIL\nR) DE ICING N/2  ALL REMAINING APRONS/NIL)\nCREATED: 19 Nov 2018 11:55:00 \nSOURCE: EUECYIYN");
                 AirportResult apr1 = new AirportResult("ENGM",65.5446684,6.5644514,"FRAN0332 ENGM 11191137 \n(SNOWTAM 0332\nA) ENBR\nB) 11191137 C) 17\nF) NIL/NIL/NIL H) 5/5/5\nN) ALL REPORTED TWYS/NIL\nR) DE ICING N/2  ALL REMAINING APRONS/NIL)\nCREATED: 19 Nov 2018 11:55:00 \nSOURCE: EUECYIYN");
                 listAirportResult.add(apr);
-                listAirportResult.add(apr1);
-                Log.d(TAG,listAirportResult.size()+"");
-                Intent intent = new Intent(MainActivity.this,MapsActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putParcelableArrayList("listAirPort",listAirportResult);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                listAirportResult.add(apr1);*/
+
                 
             }
         });
