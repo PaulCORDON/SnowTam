@@ -9,16 +9,18 @@ public class AirportResult implements Parcelable{
     private double longitude;
     private String snowtam;
     private String snowtamDecoded;
+    private boolean isOnTarget;
 
     public AirportResult() {
     }
 
-    public AirportResult(String ICAO_Code, double latitude, double longitude, String snowtam,String snowtamDecoded) {
+    public AirportResult(String ICAO_Code, double latitude, double longitude, String snowtam,String snowtamDecoded,boolean isOnTarget) {
         this.ICAO_Code = ICAO_Code;
         this.latitude = latitude;
         this.longitude = longitude;
         this.snowtam = snowtam;
         this.snowtamDecoded=snowtamDecoded;
+        this.isOnTarget=isOnTarget;
     }
 
 
@@ -54,11 +56,20 @@ public class AirportResult implements Parcelable{
     public void setSnowtam(String snowtam) {
         this.snowtam = snowtam;
     }
+    public boolean isOnTarget() {
+        return isOnTarget;
+    }
+
+    public void setOnTarget(boolean onTarget) {
+        isOnTarget = onTarget;
+    }
+
     public String getSnowtamDecoded() {
         return snowtamDecoded;
     }
 
     public void setSnowtamDecoded(String snowtam) {
+        //TODO décodé comme il faut
         this.snowtamDecoded="";
         for(String s : snowtam.split("\n")){
             if(s.contains("A) ")){
@@ -96,6 +107,7 @@ public class AirportResult implements Parcelable{
         longitude = in.readDouble();
         snowtam = in.readString();
         snowtamDecoded=in.readString();
+        isOnTarget= in.readByte() != 0;
     }
 
     public static final Creator<AirportResult> CREATOR = new Creator<AirportResult>() {
@@ -121,6 +133,7 @@ public class AirportResult implements Parcelable{
         parcel.writeDouble(longitude);
         parcel.writeString(snowtam);
         parcel.writeString(snowtamDecoded);
+        parcel.writeByte((byte) (isOnTarget ? 1 : 0));
     }
 
 

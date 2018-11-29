@@ -1,8 +1,11 @@
 package com.ensim.projetsnowtam;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.Image;
 import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -52,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText airport4 = (EditText) findViewById(R.id.airport4);
         final EditText airport5 = (EditText) findViewById(R.id.airport5);
         final EditText airport6 = (EditText) findViewById(R.id.airport6);
+
 
 
         final ImageView close2 = (ImageView) findViewById(R.id.close2);
@@ -173,10 +177,10 @@ public class MainActivity extends AppCompatActivity {
                 for(String s : listAirportInfos){
                     Log.d("listAirportInfo" , " Airpot Info : " + s);
                 }
-
-
-                Log.d(TAG,listAirport.size()+"SSSSSSSSSSSSIIIIIIIIIIZZZZZ");
-                for (String codeICAO:listAirport) {
+                final int delimitateur = listAirport.size();
+                listAirport.addAll(listAirportInfos);
+                //Log.d(TAG,listAirport.size()+" SSSSSSSSSSSSIIIIIIIIIIZZZZZ");
+                for (final String codeICAO:listAirport) {
                     if(!codeICAO.isEmpty()){
                         Response.Listener<DataSearchAirportSnowtam> responseListener = new Response.Listener<DataSearchAirportSnowtam>() {
                             @Override
@@ -185,10 +189,18 @@ public class MainActivity extends AppCompatActivity {
                                 if(!response.getData().isEmpty()){
                                     Log.d(TAG,response.getData().get(response.getData().size()-1).getAll());
                                     listAirportResult.add(new AirportResult());
-                                    Log.d(TAG,listAirportResult.size()+"SIZZZZZZZZZZZZE");
-                                    listAirportResult.get(listAirportResult.size()-1).setSnowtam(response.getData().get(response.getData().size()-1).getAll());
-                                    listAirportResult.get(listAirportResult.size()-1).setSnowtamDecoded(response.getData().get(response.getData().size()-1).getAll());
+                                    //Log.d(TAG,listAirportResult.size()+" SIZZZZZZZZZZZZE");
+                                    listAirportResult.get(listAirportResult.size()-1).setSnowtam(response.getData().get(response.getData().size()-1).getAll().contains("SNOWTAM")?response.getData().get(response.getData().size()-1).getAll():"No Snowtam" );
+                                    listAirportResult.get(listAirportResult.size()-1).setSnowtamDecoded(response.getData().get(response.getData().size()-1).getAll().contains("SNOWTAM")?response.getData().get(response.getData().size()-1).getAll():"No Snowtam" );
                                     listAirportResult.get(listAirportResult.size()-1).setICAO_Code(response.getData().get(response.getData().size()-1).getLocation());
+                                    if(listAirport.indexOf(codeICAO)<delimitateur){
+                                        listAirportResult.get(listAirportResult.size()-1).setOnTarget(true);
+
+                                    }
+                                    else{
+                                        listAirportResult.get(listAirportResult.size()-1).setOnTarget(false);
+
+                                    }
 
                                     final String codeICAO2=response.getData().get(response.getData().size()-1).getLocation();
                                     Response.Listener<DataSearchAirportLocation> responseListener2 = new Response.Listener<DataSearchAirportLocation>() {
@@ -219,6 +231,21 @@ public class MainActivity extends AppCompatActivity {
                                         }
                                     };
                                     ApiService.INSTANCE.searchAirportLocation(Uri.encode(codeICAO2), responseListener2, errorListener2,MainActivity.this);
+                                }
+                                else{
+                                    Log.d(TAG,"reponse vide pour "+codeICAO);
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                    builder.setCancelable(true);
+                                    builder.setTitle("False ICAO code");
+                                    builder.setMessage(codeICAO+" is not de ICAO code");
+                                    builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                        }
+                                    });
+
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
                                 }
                             }
                         };
