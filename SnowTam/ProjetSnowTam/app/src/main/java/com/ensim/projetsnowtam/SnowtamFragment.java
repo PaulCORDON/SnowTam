@@ -16,7 +16,6 @@ import android.widget.TextView;
  */
 public class SnowtamFragment extends Fragment {
     private static final String TAG = "SnowtamFragment";
-    //private String title;
     public SnowtamFragment() {
         // Required empty public constructor
     }
@@ -31,13 +30,6 @@ public class SnowtamFragment extends Fragment {
         return fragment;
     }
 
-
-   /* @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        title = getArguments().getString("title");
-    }
-    */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment

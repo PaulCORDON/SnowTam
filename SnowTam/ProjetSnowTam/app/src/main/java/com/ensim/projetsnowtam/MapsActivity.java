@@ -1,6 +1,7 @@
 package com.ensim.projetsnowtam;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
 
@@ -50,18 +52,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setOnInfoWindowClickListener(this);
+        PolylineOptions polylineOptions = new PolylineOptions();
         // Add a marker in Sydney and move the camera
         for (AirportResult apr: listAirportResult) {
             LatLng currentAirport = new LatLng(apr.getLatitude(), apr.getLongitude());
-
+            polylineOptions.add(currentAirport);
             mMap.addMarker(new MarkerOptions().position(currentAirport).title(apr.getICAO_Code()));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(currentAirport));
+
         }
-
-    }
-
-    public void onMarkerClick(final Marker marker) {
-        Log.d(TAG,marker.getTitle());
+        mMap.addPolyline(polylineOptions.width(5).color(Color.RED).geodesic(true));
     }
 
     @Override
