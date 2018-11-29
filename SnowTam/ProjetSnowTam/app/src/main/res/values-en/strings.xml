@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ProjetSnowTam</string>
+    <string name="Search">Search</string>
+    <string name="Snowtam">Snowtam</string>
+    <string name="AddAirport">Add Airport</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="CodeICAO">ICOA code</string>
+    <string name="google_maps_key">AIzaSyC1FlhgbntKfJRYl53xoaVK9txyMpd9Big</string>
+    <string name="decodeSnowtam">Snowtam decoded</string>
+    <string name="brutSnowtam">Raw snowtam</string>
+    <string name="param">parameter</string>
+    <string name="cryptage">See raw snowtam first : </string>
+    <string name="mapFirst">See the whole travel first : </string>
+    <string name="save">Save</string>
+
+    <string-array name="langues">
+        <item>English</item>
+        <item>Français</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Projet SnowTam</string>
+    <string name="Search">Rechercher</string>
+    <string name="Snowtam">Snowtam</string>
+    <string name="AddAirport">Ajouter un aéroport</string>
+    <string name="title_activity_maps">Carte</string>
+    <string name="CodeICAO">code ICAO</string>
+    <string name="google_maps_key">AIzaSyC1FlhgbntKfJRYl53xoaVK9txyMpd9Big</string>
+    <string name="decodeSnowtam">Snowtam décodé</string>
+    <string name="brutSnowtam">Snowtam crypté</string>
+    <string name="param">paramêtre</string>
+    <string name="cryptage">Voir le snowtam crypté d abord : </string>
+    <string name="mapFirst">Voir le trajet d abord : </string>
+    <string name="save">Save</string>
+
+    <string-array name="langues">
+        <item>English</item>
+        <item>Français</item>
+    </string-array>
+
+</resources>
