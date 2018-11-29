@@ -119,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                                     listAirportResult.add(new AirportResult());
                                     Log.d(TAG,listAirportResult.size()+"SIZZZZZZZZZZZZE");
                                     listAirportResult.get(listAirportResult.size()-1).setSnowtam(response.getData().get(response.getData().size()-1).getAll());
+                                    listAirportResult.get(listAirportResult.size()-1).setSnowtamDecoded(response.getData().get(response.getData().size()-1).getAll());
                                     listAirportResult.get(listAirportResult.size()-1).setICAO_Code(response.getData().get(response.getData().size()-1).getLocation());
 
                                     final String codeICAO2=response.getData().get(response.getData().size()-1).getLocation();
