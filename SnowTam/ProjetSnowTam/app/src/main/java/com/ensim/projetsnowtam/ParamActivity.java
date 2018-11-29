@@ -1,11 +1,13 @@
 package com.ensim.projetsnowtam;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 public class ParamActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -14,6 +16,8 @@ public class ParamActivity extends AppCompatActivity implements AdapterView.OnIt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_param);
+
+        Button sauvegarde = (Button) findViewById(R.id.save);
 
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
@@ -25,7 +29,21 @@ public class ParamActivity extends AppCompatActivity implements AdapterView.OnIt
 // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+
+
+        sauvegarde.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v){
+                
+                Intent intentParam = new Intent(ParamActivity.this,MainActivity.class);
+                startActivity(intentParam);
+            }
+        });
+
     }
+
+
 
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
