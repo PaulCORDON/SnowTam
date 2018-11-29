@@ -1,6 +1,7 @@
 package com.ensim.projetsnowtam;
 
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button search = (Button)findViewById(R.id.searchBtn);
 
+        ImageView param = (ImageView) findViewById(R.id.param);
+
         final EditText airport1 = (EditText) findViewById(R.id.airport1);
         final EditText airport2 = (EditText) findViewById(R.id.airport2);
         final EditText airport3 = (EditText) findViewById(R.id.airport3);
@@ -67,7 +70,14 @@ public class MainActivity extends AppCompatActivity {
         final Button ajout = (Button) findViewById(R.id.Ajouter);
 
 
+        param.setOnClickListener(new View.OnClickListener(){
 
+            @Override
+            public void onClick(View v){
+                Intent intentParam = new Intent(MainActivity.this,ParamActivity.class);
+                startActivity(intentParam);
+            }
+        });
 
 
 
@@ -75,9 +85,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-/* liste des aeroport qui sont sur le trajet (à dessiner) */
+                /* liste des aeroport qui sont sur le trajet (à dessiner) */
                 final ArrayList<String> listAirport = new ArrayList<String>();
-/* liste des aeroports pour lequelles on veut seulement des informations */
+                /* liste des aeroports pour lequelles on veut seulement des informations */
                 final ArrayList<String> listAirportInfos = new ArrayList<String>();
                 final ArrayList<AirportResult> listAirportResult = new ArrayList<AirportResult>();
 
@@ -150,10 +160,10 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if(listAirport.size()>2){
-    listAirport.add(listAirport.get(1));
-    listAirport.remove(1);
+                    listAirport.add(listAirport.get(1));
+                    listAirport.remove(1);
 
-}
+                }
                 listAirport.removeAll(Arrays.asList(null,""));
                 Log.d("taille tableau", ""+listAirport.size());
 
@@ -442,33 +452,33 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 do {
                     Log.w("Edit Ordre" , "on change l'ordre 1" );
-                choixAirport[1]++;
+                    choixAirport[1]++;
                     if(choixAirport[1]>=10){
                         choixAirport[1] = 1;
                     }
-                if(choixAirport[1]==nbrAirport+2){
-                    choixAirport[1] = 20;
-                }
+                    if(choixAirport[1]==nbrAirport+2){
+                        choixAirport[1] = 20;
+                    }
 
 
-            }while(estDansListe(choixAirport,choixAirport[1]));
+                }while(estDansListe(choixAirport,choixAirport[1]));
                 imgAirport2.setImageResource(returnIdImage(choixAirport[1]));
             }
         });
         imgAirport3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    do {
-                        Log.w("Edit Ordre" , "on change l'ordre 2" );
-                choixAirport[2]++;
-                        if(choixAirport[2]>=10){
-                            choixAirport[2] = 1;
-                        }
-                if(choixAirport[2]==nbrAirport+2){
-                    choixAirport[2] = 30;
-                }
+                do {
+                    Log.w("Edit Ordre" , "on change l'ordre 2" );
+                    choixAirport[2]++;
+                    if(choixAirport[2]>=10){
+                        choixAirport[2] = 1;
+                    }
+                    if(choixAirport[2]==nbrAirport+2){
+                        choixAirport[2] = 30;
+                    }
 
-                    }while(estDansListe(choixAirport,choixAirport[2]));
+                }while(estDansListe(choixAirport,choixAirport[2]));
                 imgAirport3.setImageResource(returnIdImage(choixAirport[2]));
             }
         });
@@ -477,13 +487,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 do {
                     Log.w("Edit Ordre" , "on change l'ordre 3" );
-                choixAirport[3]++;
+                    choixAirport[3]++;
                     if(choixAirport[3]>=10){
                         choixAirport[3] = 1;
                     }
-                if(choixAirport[3]==nbrAirport+2){
-                    choixAirport[3] = 40;
-                }
+                    if(choixAirport[3]==nbrAirport+2){
+                        choixAirport[3] = 40;
+                    }
 
                 }while(estDansListe(choixAirport,choixAirport[3]));
                 imgAirport4.setImageResource(returnIdImage(choixAirport[3]));
@@ -492,17 +502,17 @@ public class MainActivity extends AppCompatActivity {
         imgAirport5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    do {
-                        Log.w("Edit Ordre" , "on change l'ordre 4" );
-                choixAirport[4]++;
-                        if(choixAirport[4]>=10){
-                            choixAirport[4] = 1;
-                        }
-                if(choixAirport[4]==nbrAirport+2){
-                    choixAirport[4] = 50;
-                }
+                do {
+                    Log.w("Edit Ordre" , "on change l'ordre 4" );
+                    choixAirport[4]++;
+                    if(choixAirport[4]>=10){
+                        choixAirport[4] = 1;
+                    }
+                    if(choixAirport[4]==nbrAirport+2){
+                        choixAirport[4] = 50;
+                    }
 
-                    }while(estDansListe(choixAirport,choixAirport[4]));
+                }while(estDansListe(choixAirport,choixAirport[4]));
                 imgAirport5.setImageResource(returnIdImage(choixAirport[4]));
             }
         });
@@ -511,13 +521,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 do {
                     Log.w("Edit Ordre" , "on change l'ordre 5" );
-                choixAirport[5]++;
+                    choixAirport[5]++;
                     if(choixAirport[5]>=10){
                         choixAirport[5] = 1;
                     }
-                if(choixAirport[5]==nbrAirport+2){
-                    choixAirport[5] = 60;
-                }
+                    if(choixAirport[5]==nbrAirport+2){
+                        choixAirport[5] = 60;
+                    }
 
                 }while(estDansListe(choixAirport,choixAirport[5]));
                 imgAirport6.setImageResource(returnIdImage(choixAirport[5]));
@@ -541,24 +551,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     int returnIdImage(int a){
-            switch (a){
-                case 1:
-                    return R.drawable.departures;
-                case 2:
-                    return R.drawable.arrivals;
-                case 3:
-                    return R.drawable.escales1;
-                case 4:
-                    return R.drawable.escales2;
-                case 5:
-                    return R.drawable.escales3;
-                case 6:
-                    return R.drawable.escales4;
-                case 10:
-                    return R.drawable.escales;
-                default:
-                    return R.drawable.escales;
-            }
+        switch (a){
+            case 1:
+                return R.drawable.departures;
+            case 2:
+                return R.drawable.arrivals;
+            case 3:
+                return R.drawable.escales1;
+            case 4:
+                return R.drawable.escales2;
+            case 5:
+                return R.drawable.escales3;
+            case 6:
+                return R.drawable.escales4;
+            case 10:
+                return R.drawable.escales;
+            default:
+                return R.drawable.escales;
+        }
     }
 
     int returnOrdre(int a){

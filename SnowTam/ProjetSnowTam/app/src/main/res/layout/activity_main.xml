@@ -325,5 +325,19 @@
         app:layout_constraintTop_toTopOf="@+id/airport4"
         app:srcCompat="@drawable/escales2" />
 
+    <ImageView
+        android:id="@+id/param"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:srcCompat="@android:drawable/ic_menu_manage" />
+
 
 </android.support.constraint.ConstraintLayout>
