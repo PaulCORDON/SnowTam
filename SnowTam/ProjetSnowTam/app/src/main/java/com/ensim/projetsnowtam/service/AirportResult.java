@@ -246,36 +246,92 @@ public class AirportResult implements Parcelable {
     }
 
     String decodeJ(String s) {
+        String[] S1 = s.split("/");
+        if(S1[1].contains("LR")){
+            String[] S2 = S1[1].split("L");
+            return  "CRITICAL SNOW BANK "+ S1[0] +"cm /"+ S2[0] +"m LEFT and RIGHT of Runway";
+        }
+        if(S1[1].contains("L")){
+            String[] S2 = S1[1].split("L");
+            return  "CRITICAL SNOW BANK "+ S1[0] +"cm /"+ S2[0] +"m LEFT of Runway";
+        }
+        if(S1[1].contains("R")){
+            String[] S2 = S1[1].split("R");
+            return  "CRITICAL SNOW BANK "+ S1[0] +"cm /"+ S2[0] +"m RIGHT of Runway";
+        }
+
         return s;
     }
 
     String decodeK(String s) {
+        if(s.contains("YES")){
+            if(s.contains("LR")){
+                return " Lights obscured: YES LEFT RIGHT of RUNWAY ";
+            }
+            if(s.contains("L")){
+                return " Lights obscured: YES LEFT of RUNWAY ";
+            }
+            if(s.contains("R")){
+                return " Lights obscured: YES RIGHT of RUNWAY ";
+            }
+        }
         return s;
     }
 
     String decodeL(String s) {
-        return s;
+        if (s.equals("TOTAL")){
+            return " FURTHER CLEARANCE : Total length and width of the runway";
+        }else{
+            String[] S1 = s.split("/");
+            return " FURTHER CLEARANCE : "+ S1[0]+ " metres of length, and "+ S1[1] +" metres of width";
+        }
+
     }
 
     String decodeM(String s) {
-        return s;
+        String s1 = s.substring(1,3);
+        String s2 = s.substring(3,5);
+
+        return s1+":"+s2;
     }
 
     String decodeN(String s) {
-        return s;
+        if(s.length()==1){
+            return "taxiway contamination :" + traduireF(s);
+        }
+        if(s.equals("NO")){
+            return "all aprons are unusable";
+        }
+        else{
+            return s;
+        }
     }
 
     String decodeP(String s) {
+        if(s.length()>=3){
+            String s1 = s.substring(1,4);
+            String s2 = s.substring(4);
+
+            if (s1.equals("YES")){
+                return  "SNOW BANKS: YES SPACE "+ s2+"m" ;
+            }
+            else{
+                return s;
+            }
+        }
         return s;
     }
 
     String decodeR(String s) {
-        String s1 = s.substring(1,2);
-        String s2 = s.substring(3,5);
-        if(s2.equals("NO")){
-            return "Parking "+ s1 + "unusable";
+        if(s.length()==1){
+            return "aprons contamination :" + traduireF(s);
         }
-        return s;
+        if(s.equals("NO")){
+            return "all aprons are unusable";
+        }
+        else{
+            return s;
+        }
     }
 
     String decodeS(String s)
@@ -325,7 +381,7 @@ public class AirportResult implements Parcelable {
             default:
                 break;
         }
-            res = "Next observation" s2 + " " + s1 + " " + s3+":"+s4;
+            res = "Next observation"+ s2 + " " + s1 + " " + s3+":"+s4;
 
         return res;
     }
