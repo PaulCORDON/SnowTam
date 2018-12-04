@@ -198,17 +198,17 @@ public class AirportResult implements Parcelable {
 
     String decodeC(String s) {
         String res="RUNWAY";
-        int numpiste = Integer.parseInt(s.replace(" ",""));
-        if(numpiste<=36){
-            res=res+" "+numpiste+" Left";
+
+        if(s.contains("L")){
+            res = res + s.replace("L"," Left");
         }
-        else if(numpiste<=86){
-            numpiste=numpiste-50;
-            res=res+" "+numpiste+"Right";
+        else if(s.contains("R")){
+            res= res + s.replace("R"," Right");
         }
-        else if(numpiste==88){
-            res="ALL "+res;
+        else if(s.contains("88")){
+            res = "ALL "+res;
         }
+
         return res;
     }
 
@@ -238,11 +238,29 @@ public class AirportResult implements Parcelable {
     }
 
     String decodeG(String s) {
-        return s;
+        String s1 = traduireF(s.split("\\/")[0].replace(" ",""))+"mm";
+        String s2 = traduireF(s.split("\\/")[1].replace(" ",""))+"mm";
+        String s3 = traduireF(s.split("\\/")[2].replace(" ",""))+"mm";
+        return "MEAN DEPTH \nThreshold : "+s1+"\nMid runway : "+s2+"\nRoll out : "+s3;
+
     }
 
     String decodeH(String s) {
-        return "HHHH" + s;
+        if(s.contains("[A-Z]")){
+            String s1 = traduireH2(Integer.parseInt(s.split("\\/")[0].replace(" ","")));
+            String s2 = traduireH2(Integer.parseInt(s.split("\\/")[1].replace(" ","")));
+            String s3 = traduireH2(Integer.parseInt(s.split("\\/")[2].split(" ")[0]));
+            String s4 = traduireInstrumentH(s.split("\\/")[2].split(" ")[1]);
+            s="BRAKING ACTION \nThreshold : "+s1+"\nMid runway : "+s2+"\nRoll Out : "+s3+"\nInstrument : "+s4;
+        }
+        else{
+            String s1 = traduireH1(Integer.parseInt(s.split("\\/")[0].replace(" ","")));
+            String s2 = traduireH1(Integer.parseInt(s.split("\\/")[1].replace(" ","")));
+            String s3 = traduireH1(Integer.parseInt(s.split("\\/")[2].replace(" ","")));
+            s="BRAKING ACTION \nThreshold : "+s1+"\nMid runway : "+s2+"\nRoll Out : "+s3;
+        }
+
+        return s;
     }
 
     String decodeJ(String s) {
@@ -433,7 +451,79 @@ public class AirportResult implements Parcelable {
 
         return s;
     }
+    String traduireH1 (int i){
+        String s="";
+        if(i==1){
+            s="POOR";
+        }
+        else if(i==2){
+            s="MEDIUM TO POOR";
+        }
+        else if(i==3){
+            s="MEDIUM";
+        }
+        else if(i==4){
+            s="MEDIUM TO GOOD";
+        }
+        else if(i==5){
+            s="GOOD";
+        }
+        return s;
+    }
+    String traduireH2 (int i){
+        String s="";
+        if(i<=25){
+            s="POOR";
+        }
+        else if(i>=26 && i>=29){
+            s="MEDIUM TO POOR";
+        }
+        else if(i>=30 && i>=35){
+            s="MEDIUM";
+        }
+        else if(i>=36 && i>=39){
+            s="MEDIUM TO GOOD";
+        }
+        else if(i>=40){
+            s="GOOD";
+        }
+        return s;
+    }
+    String traduireInstrumentH(String s){
+        switch (s){
+            case "BRD" :
+                s="Brakemeter-Dynometer";
+                break;
+            case "GRT" :
+                s="Grip tester";
+                break;
+            case "MUM" :
+                s="Mu-meter";
+                break;
+            case "RFT" :
+                s="Runway friction tester";
+                break;
+            case "SFH" :
+                s="Surface friction tester (high-pressure tire)";
+                break;
+            case "SFL" :
+                s="Surface friction tester (low-pressure tire)";
+                break;
+            case "SKH" :
+                s="Skiddometer (high-pressure tire)";
+                break;
+            case "SKL" :
+                s="Skiddometer (low-pressure tire)";
+                break;
+            case "TAP" :
+                s="Tapley meter";
+                break;
+            default:
+                break;
 
+        }
+        return s;
+    }
 
     protected AirportResult(Parcel in) {
         ICAO_Code = in.readString();
