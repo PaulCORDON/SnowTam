@@ -74,7 +74,7 @@ public class AirportResult implements Parcelable {
         //TODO décodé comme il faut
         this.snowtamDecoded = "";
         for (String s : snowtam.split("\n")) {
-            this.snowtamDecoded = this.snowtamDecoded + decodeString(s) + "\n";
+            this.snowtamDecoded = this.snowtamDecoded + decodeString(s);
         }
     }
 
@@ -84,56 +84,58 @@ public class AirportResult implements Parcelable {
 
 
         if (s.contains("A) ")) {
+            Log.d(TAG, "Le snowtam contien un A) ");
             decoded =  s + "\n";
         }
         if (s.contains("B) ")) {
-            decoded = "B) " + decodeB(s.split("B\\)")[1].split("(?=[A-Z])" + "\\)")[0])+"\n";
+            Log.d(TAG, "Le snowtam contien un B) ");
+            decoded = decoded+"B) " + decodeB(s.split("B\\)")[1].split("[A-Z]" +"\\)")[0])+"\n";
         }
         if (s.contains("C) ")) {
             Log.d(TAG, "Le snowtam contien un C) ");
-            decoded = "C) " + decodeC(s.split("C\\)")[1].split("(?=[A-Z])" + "\\)")[0])+"\n";
+            decoded = decoded+"C) " + decodeC(s.split("C\\)")[1].split("[A-Z]" + "\\)")[0])+"\n";
         }
         if (s.contains("D) ")) {
-            decoded = "D) " + decodeD(s.split("D\\)")[1].split("(?=[A-Z])" + "\\)")[0])+"\n";
+            decoded = decoded+"D) " + decodeD(s.split("D\\)")[1].split("[A-Z]" + "\\)")[0])+"\n";
         }
         if (s.contains("E) ")) {
-            decoded = "E) " + decodeE(s.split("E\\)")[1].split("(?=[A-Z])" + "\\)")[0])+"\n";
+            decoded = decoded+"E) " + decodeE(s.split("E\\)")[1].split("[A-Z]" + "\\)")[0])+"\n";
         }
         if (s.contains("F) ")) {
-            decoded = "F) " + decodeF(s.split("F\\)")[1].split("(?=[A-Z])" + "\\)")[0])+"\n";
+            decoded =decoded+ "F) " + decodeF(s.split("F\\)")[1].split("[A-Z]" + "\\)")[0])+"\n";
         }
         if (s.contains("G) ")) {
-            decoded = "G) " + decodeG(s.split("G\\)")[1].split("(?=[A-Z])" + "\\)")[0])+"\n";
+            decoded =decoded+ "G) " + decodeG(s.split("G\\)")[1].split("[A-Z]" + "\\)")[0])+"\n";
         }
         if (s.contains("H) ")) {
-            decoded = "H) " + decodeH(s.split("H\\)")[1].split("(?=[A-Z])" + "\\)")[0])+"\n";
+            decoded =decoded+ "H) " + decodeH(s.split("H\\)")[1].split("[A-Z]" + "\\)")[0])+"\n";
         }
         if (s.contains("J) ")) {
-            decoded = "J) " + decodeJ(s.split("J\\)")[1].split("(?=[A-Z])" + "\\)")[0])+"\n";
+            decoded =decoded+ "J) " + decodeJ(s.split("J\\)")[1].split("[A-Z]" + "\\)")[0])+"\n";
         }
         if (s.contains("K) ")) {
-            decoded = "K) " + decodeK(s.split("K\\)")[1].split("(?=[A-Z])" + "\\)")[0])+"\n";
+            decoded = decoded+"K) " + decodeK(s.split("K\\)")[1].split("[A-Z]" + "\\)")[0])+"\n";
         }
         if (s.contains("L) ")) {
-            decoded = "L) " + decodeL(s.split("L\\)")[1].split("(?=[A-Z])" + "\\)")[0])+"\n";
+            decoded = decoded+"L) " + decodeL(s.split("L\\)")[1].split("[A-Z]" + "\\)")[0])+"\n";
         }
         if (s.contains("M) ")) {
-            decoded = "M) " + decodeM(s.split("M\\)")[1].split("(?=[A-Z])" + "\\)")[0])+"\n";
+            decoded =decoded+ "M) " + decodeM(s.split("M\\)")[1].split("[A-Z]" + "\\)")[0])+"\n";
         }
         if (s.contains("N) ")) {
-            decoded = "N) " + decodeN(s.split("N\\)")[1].split("(?=[A-Z])" + "\\)")[0])+"\n";
+            decoded =decoded+ "N) " + decodeN(s.split("N\\)")[1].split("[A-Z]" + "\\)")[0])+"\n";
         }
         if (s.contains("P) ")) {
-            decoded = "P) " + decodeP(s.split("P\\)")[1].split("(?=[A-Z])" + "\\)")[0])+"\n";
+            decoded =decoded+ "P) " + decodeP(s.split("P\\)")[1].split("[A-Z]" + "\\)")[0])+"\n";
         }
         if (s.contains("R) ")) {
-            decoded = "R) " + decodeR(s.split("R\\)")[1].split("(?=[A-Z])" + "\\)")[0])+"\n";
+            decoded =decoded+ "R) " + decodeR(s.split("R\\)")[1].split("[A-Z]" + "\\)")[0])+"\n";
         }
         if (s.contains("S) ")) {
-            decoded = "S) " + decodeS(s.split("S\\)")[1].split("(?=[A-Z])" + "\\)")[0])+"\n";
+            decoded = decoded+"S) " + decodeS(s.split("S\\)")[1].split("[A-Z]" + "\\)")[0])+"\n";
         }
         if (s.contains("T) ")) {
-            decoded = "T) " + decodeT(s.split("T\\)")[1].split("(?=[A-Z])" + "\\)")[0])+"\n";
+            decoded = decoded+"T) " + decodeT(s.split("T\\)")[1].split("[A-Z]" + "\\)")[0])+"\n";
         }
         if(!(s.contains("A) ")||s.contains("B) ")||s.contains("C) ")||s.contains("D) ")||s.contains("E) ")||s.contains("F) ")||s.contains("G) ")||s.contains("H) ")||s.contains("J) ")||s.contains("K) ")||s.contains("L) ")||s.contains("M) ")||s.contains("N) ")||s.contains("P) ")||s.contains("R) ")||s.contains("S) ")||s.contains("T) "))){
             decoded=s;
@@ -143,7 +145,59 @@ public class AirportResult implements Parcelable {
     }
 
     String decodeB(String s) {
-        return s;
+        String res="";
+        String s1= s.substring(1,3);
+        String s2= s.substring(3,5);
+        String s3= s.substring(5,7);
+        String s4= s.substring(7,9);
+        switch (s1){
+            case "01" :
+                s1="Jan";
+                break;
+            case "02" :
+                s1="Feb";
+                break;
+            case "03" :
+                s1="Mar";
+                break;
+            case "04" :
+                s1="Apr";
+                break;
+            case "05" :
+                s1="May";
+                break;
+            case "06" :
+                s1="Jun";
+                break;
+            case "07" :
+                s1="Jul";
+                break;
+            case "08" :
+                s1="Aug";
+                break;
+            case "09" :
+                s1="Sep";
+                break;
+            case "10" :
+                s1="Oct";
+                break;
+            case "11" :
+                s1="Nov";
+                break;
+            case "12" :
+                s1="Dec";
+                break;
+            default:
+                break;
+
+        }
+        Log.d(TAG,"AZERTYUIO"+s2+" "+s1+" "+s3+":"+s4);
+
+
+        res=s2+" "+s1+" "+s3+":"+s4;
+
+
+        return res;
     }
 
     String decodeC(String s) {
