@@ -18,9 +18,14 @@ import com.ensim.projetsnowtam.service.AirportResult;
 import com.ensim.projetsnowtam.service.ApiService;
 import com.ensim.projetsnowtam.service.DataSearchAirportLocation;
 import com.ensim.projetsnowtam.service.DataSearchAirportSnowtam;
+import com.ensim.projetsnowtam.service.Parametre;
 import com.google.android.gms.common.SignInButton;
 
 import java.io.Console;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -29,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
     public int nbrAirport = 1;
     public int[] choixAirport = new int[6];
+
+    public Parametre parametre = new Parametre("",false,false);
 
 
     @Override
@@ -40,11 +47,26 @@ public class MainActivity extends AppCompatActivity {
         choixAirport[4] = 5;
         choixAirport[5] = 6;
 
+
+        try {
+            FileInputStream fis = openFileInput("Param.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            parametre = (Parametre) ois.readObject();
+            Log.d("Param de base recup: ",""+ parametre.isChoixAffichage() + parametre.isChoixDecryptage());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        Log.d("Param de base : ",""+ parametre.isChoixAffichage() + parametre.isChoixDecryptage());
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button search = (Button)findViewById(R.id.searchBtn);
 
-        ImageView param = (ImageView) findViewById(R.id.param);
+        final ImageView param = (ImageView) findViewById(R.id.param);
 
         final EditText airport1 = (EditText) findViewById(R.id.airport1);
         final EditText airport2 = (EditText) findViewById(R.id.airport2);
@@ -203,12 +225,21 @@ public class MainActivity extends AppCompatActivity {
                                                 }
                                             }
                                             if(listAirportResult.size()==listAirport.size()){
+                                                if(parametre.isChoixAffichage()){
+                                                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                                                    Bundle bundle = new Bundle();
+                                                    bundle.putParcelableArrayList("listAirPort", listAirportResult);
+                                                    intent.putExtras(bundle);
+                                                    startActivity(intent);
+                                                }else{
+                                                    Intent intent = new Intent(MainActivity.this, SnowtamActivity.class);
+                                                    Bundle bundle = new Bundle();
+                                                    bundle.putParcelableArrayList("listAirPort", listAirportResult);
+                                                    bundle.putInt("index",0);
+                                                    intent.putExtras(bundle);
+                                                    startActivity(intent);
+                                                }
 
-                                                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
-                                                Bundle bundle = new Bundle();
-                                                bundle.putParcelableArrayList("listAirPort", listAirportResult);
-                                                intent.putExtras(bundle);
-                                                startActivity(intent);
                                             }
                                         }
                                     };

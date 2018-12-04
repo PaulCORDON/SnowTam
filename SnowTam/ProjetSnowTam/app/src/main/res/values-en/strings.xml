@@ -11,8 +11,9 @@
     <string name="brutSnowtam">Raw snowtam</string>
     <string name="param">parameter</string>
     <string name="cryptage">See raw snowtam first : </string>
-    <string name="mapFirst">See the whole travel first : </string>
+    <string name="mapFirst">See the snowtam first : </string>
     <string name="save">Save</string>
+    <string name="seeFirst">See first :</string>
 
     <string-array name="langues">
         <item>English</item>

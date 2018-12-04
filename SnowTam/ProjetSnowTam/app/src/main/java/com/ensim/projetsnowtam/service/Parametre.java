@@ -1,6 +1,10 @@
 package com.ensim.projetsnowtam.service;
 
-public class Parametre {
+import java.io.Serializable;
+
+public class Parametre implements Serializable {
+
+
 
     String langue;
     boolean choixAffichage;
@@ -13,6 +17,10 @@ public class Parametre {
         choixAffichage= aff;
         choixDecryptage=crypt;
     }
+
+
+
+
 
     public String getLangue() {
         return langue;
