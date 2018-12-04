@@ -23,7 +23,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class ParamActivity extends AppCompatActivity  {
-    Parametre param;
+    Parametre param=new Parametre("",false,false);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

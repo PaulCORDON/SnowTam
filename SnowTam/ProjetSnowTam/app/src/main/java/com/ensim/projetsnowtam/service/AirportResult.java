@@ -192,29 +192,49 @@ public class AirportResult implements Parcelable {
 
         }
         Log.d(TAG,"AZERTYUIO"+s2+" "+s1+" "+s3+":"+s4);
-
-
         res=s2+" "+s1+" "+s3+":"+s4;
-
-
         return res;
     }
 
     String decodeC(String s) {
-        Log.d(TAG, s);
-        return "piste : " + s;
+        String res="RUNWAY";
+        int numpiste = Integer.parseInt(s.replace(" ",""));
+        if(numpiste<=36){
+            res=res+" "+numpiste+" Left";
+        }
+        else if(numpiste<=86){
+            numpiste=numpiste-50;
+            res=res+" "+numpiste+"Right";
+        }
+        else if(numpiste==88){
+            res="ALL "+res;
+        }
+        return res;
     }
 
     String decodeD(String s) {
-        return "DDDD" + s;
+        return "CLEARED RUNWAY LENGTH "+ s+"m";
     }
 
     String decodeE(String s) {
-        return s;
+       String res="CLEARED RUNWAY WIDTH ";
+        if (s.contains("L")){
+            res=res+s.split("L")[0]+"m "+"Left";
+        }
+        else if(s.contains("R")){
+            res=res+s.split("R")[0]+"m "+"Right";
+        }
+        else{
+            res=res+s+"m";
+        }
+        return res;
     }
 
     String decodeF(String s) {
-        return s;
+        String s1 = traduireF(s.split("\\/")[0].replace(" ",""));
+        String s2 = traduireF(s.split("\\/")[1].replace(" ",""));
+        String s3 = traduireF(s.split("\\/")[2].replace(" ",""));
+        return "Threshold : "+s1+" \nMid runway : "+s2+"\nRoll out : "+s3;
     }
 
     String decodeG(String s) {
@@ -258,6 +278,50 @@ public class AirportResult implements Parcelable {
     }
 
     String decodeT(String s) {
+        return s;
+    }
+
+
+
+
+    String traduireF(String s){
+
+        switch (s){
+            case "0" :
+                s="CLEAR AND DRY";
+                break;
+            case "1" :
+                s="DAMP";
+                break;
+            case "2" :
+                s="WET or WATER PATCHES";
+                break;
+            case "3" :
+                s="RIME OR FROST COVERED";
+                break;
+            case "4" :
+                s="DRY SNOW";
+                break;
+            case "5" :
+                s="WET SNOW";
+                break;
+            case "6" :
+                s="SLUSH";
+                break;
+            case "7" :
+                s="ICE";
+                break;
+            case "8" :
+                s="COMPACTED OR ROLLED SNOW";
+                break;
+            case "9" :
+                s="FROZEN RUTS OR RIDGES";
+                break;
+            default:
+                break;
+
+        }
+
         return s;
     }
 
