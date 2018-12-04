@@ -250,11 +250,64 @@ public class AirportResult implements Parcelable {
     }
 
     String decodeR(String s) {
+        String s1 = s.substring(1,2);
+        String s2 = s.substring(3,5);
+        if(s2.equals("NO")){
+            return "Parking "+ s1 + "unusable";
+        }
         return s;
     }
 
-    String decodeS(String s) {
-        return s;
+    String decodeS(String s)
+    {
+        String res ="";
+        String s1 = s.substring(1,3);
+        String s2 = s.substring(3,5);
+        String s3 = s.substring(5,7);
+        String s4 = s.substring(7,9);
+        switch (s1){
+            case "01" :
+                s1="Jan";
+                break;
+            case "02" :
+                s1="Feb";
+                break;
+            case "03" :
+                s1="Mar";
+                break;
+            case "04" :
+                s1="Apr";
+                break;
+            case "05" :
+                s1="May";
+                break;
+            case "06" :
+                s1="Jun";
+                break;
+            case "07" :
+                s1="Jul";
+                break;
+            case "08" :
+                s1="Aug";
+                break;
+            case "09" :
+                s1="Sep";
+                break;
+            case "10" :
+                s1="Oct";
+                break;
+            case "11" :
+                s1="Nov";
+                break;
+            case "12" :
+                s1="Dec";
+                break;
+            default:
+                break;
+        }
+            res = "Next observation" s2 + " " + s1 + " " + s3+":"+s4;
+
+        return res;
     }
 
     String decodeT(String s) {
