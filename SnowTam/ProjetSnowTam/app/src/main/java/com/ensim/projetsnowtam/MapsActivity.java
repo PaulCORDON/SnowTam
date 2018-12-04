@@ -57,8 +57,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         for (AirportResult apr: listAirportResult) {
             LatLng currentAirport = new LatLng(apr.getLatitude(), apr.getLongitude());
 
-            //TODO ajouter un if pour vérifier si l'aéroport est sur le trajet
-            polylineOptions.add(currentAirport);
+
+            if(apr.isOnTarget()){
+                polylineOptions.add(currentAirport);
+            }
+
 
 
             mMap.addMarker(new MarkerOptions().position(currentAirport).title(apr.getICAO_Code()));
