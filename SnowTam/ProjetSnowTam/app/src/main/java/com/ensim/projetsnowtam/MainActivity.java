@@ -181,10 +181,6 @@ public class MainActivity extends AppCompatActivity {
                         listAirport.set(choixAirport[5]-1,airport6.getText().toString());
                     }
                 }
-
-
-
-
                 if(listAirport.size()>2){
                     listAirport.add(listAirport.get(1));
                     listAirport.remove(1);
