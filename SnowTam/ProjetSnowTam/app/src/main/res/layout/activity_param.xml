@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/tracksnow"
     tools:context=".ParamActivity">
 
     <TextView
@@ -12,34 +13,41 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:text="@string/param"
         android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="52dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Switch
         android:id="@+id/rawOrNot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/cryptage"
+        android:layout_marginBottom="160dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="64dp"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintBottom_toTopOf="@+id/save"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/MapFirst"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Switch
         android:id="@+id/MapFirst"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/mapFirst"
+        android:layout_marginTop="24dp"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rawOrNot" />
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
         android:id="@+id/save"
@@ -62,34 +70,78 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="@string/seeFirst"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="See uncrypt snowtam"
+        android:text="uncrypt snowtam"
         android:textAllCaps="true"
+        android:textColor="@android:color/black"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/rawOrNot"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/rawOrNot"
-        app:layout_constraintTop_toTopOf="@+id/rawOrNot" />
+        app:layout_constraintTop_toTopOf="@+id/rawOrNot"
+        android:background="@drawable/edittext_rounded_corners"/>
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="See snowtam First"
+        android:background="@drawable/edittext_rounded_corners"
+        android:text="Map"
+        android:textAllCaps="true"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/MapFirst"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/MapFirst"
+        app:layout_constraintTop_toTopOf="@+id/MapFirst" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Raw Snowtam"
+        android:textAllCaps="true"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/rawOrNot"
+        app:layout_constraintEnd_toStartOf="@+id/rawOrNot"
+        app:layout_constraintHorizontal_bias="0.293"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rawOrNot"
+        android:background="@drawable/edittext_rounded_corners"/>
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_rounded_corners"
+        android:text="Snowtam"
+        android:textAllCaps="true"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/MapFirst"
+        app:layout_constraintEnd_toStartOf="@+id/MapFirst"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/MapFirst" />
 
 </android.support.constraint.ConstraintLayout>

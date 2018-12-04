@@ -5,9 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:minHeight="182dp"
+    android:background="@drawable/tracksnow"
     tools:context=".MainActivity">
 
-    <TextView
+    <ImageView
+        android:id="@+id/close3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:tag="3"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/airport3"
+        app:layout_constraintEnd_toStartOf="@+id/airport3"
+        app:layout_constraintTop_toTopOf="@+id/airport3"
+        app:srcCompat="@android:drawable/btn_dialog" />
+
+    <ImageView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,8 +30,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/Snowtam"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+
+        app:srcCompat="@drawable/snow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,103 +57,127 @@
 
     <EditText
         android:id="@+id/airport1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="127dp"
+        android:layout_height="29dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_rounded_corners"
+        android:ellipsize="start"
         android:ems="10"
+        android:gravity="center_horizontal"
         android:inputType="textPersonName"
         android:text="@string/CodeICAO"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/close1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.022" />
 
     <EditText
         android:id="@+id/airport2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="127dp"
+        android:layout_height="29dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_rounded_corners"
+        android:ellipsize="start"
         android:ems="10"
+        android:gravity="center_horizontal"
         android:inputType="textPersonName"
-
         android:text="@string/CodeICAO"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/close2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/airport1"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.019" />
 
     <EditText
         android:id="@+id/airport3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="127dp"
+        android:layout_height="29dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_rounded_corners"
+        android:ellipsize="start"
         android:ems="10"
+        android:gravity="center_horizontal"
         android:inputType="textPersonName"
         android:text="@string/CodeICAO"
-
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/close3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/airport2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.021" />
 
     <EditText
         android:id="@+id/airport4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="127dp"
+        android:layout_height="29dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_rounded_corners"
+        android:ellipsize="start"
         android:ems="10"
+        android:gravity="center_horizontal"
         android:inputType="textPersonName"
         android:text="@string/CodeICAO"
-
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/close4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/airport3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.043" />
 
     <EditText
         android:id="@+id/airport5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="127dp"
+        android:layout_height="29dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_rounded_corners"
+        android:ellipsize="start"
         android:ems="10"
+        android:gravity="center_horizontal"
         android:inputType="textPersonName"
         android:text="@string/CodeICAO"
-
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/close5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/airport4"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.029" />
 
     <EditText
         android:id="@+id/airport6"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="124dp"
+        android:layout_height="29dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_rounded_corners"
+        android:ellipsize="start"
         android:ems="10"
+        android:gravity="center_horizontal"
         android:inputType="textPersonName"
         android:text="@string/CodeICAO"
-
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/close6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/airport5"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.035" />
 
     <Button
         android:id="@+id/Ajouter"
@@ -158,12 +197,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="84dp"
         android:layout_marginTop="8dp"
-        android:visibility = "invisible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/airport1"
+        app:layout_constraintEnd_toStartOf="@+id/airport1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/airport1"
+        app:layout_constraintVertical_bias="0.421"
         app:srcCompat="@android:drawable/btn_dialog" />
 
     <ImageView
@@ -171,66 +213,41 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
-        android:visibility="invisible"
         android:tag="2"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/airport2"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/airport2"
         app:layout_constraintTop_toTopOf="@+id/airport2"
         app:srcCompat="@android:drawable/btn_dialog" />
 
-    <ImageView
-        android:id="@+id/close3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:visibility="invisible"
-        android:tag="3"
-        app:layout_constraintBottom_toBottomOf="@+id/airport3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/airport3"
-        app:srcCompat="@android:drawable/btn_dialog" />
     <ImageView
         android:id="@+id/close4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
-        android:visibility="invisible"
         android:tag="4"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/airport4"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/airport4"
         app:layout_constraintTop_toTopOf="@+id/airport4"
         app:srcCompat="@android:drawable/btn_dialog" />
+
     <ImageView
         android:id="@+id/close5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
-        android:visibility="invisible"
         android:tag="5"
-        app:layout_constraintBottom_toBottomOf="@+id/airport5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/airport5"
-        app:srcCompat="@android:drawable/btn_dialog" />
-    <ImageView
-        android:id="@+id/close6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:visibility="invisible"
-        android:tag="6"
-        app:layout_constraintBottom_toBottomOf="@+id/airport6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/airport6"
+        app:layout_constraintBottom_toBottomOf="@+id/airport5"
+        app:layout_constraintEnd_toStartOf="@+id/airport5"
+        app:layout_constraintTop_toTopOf="@+id/airport5"
         app:srcCompat="@android:drawable/btn_dialog" />
 
     <ImageView
@@ -338,6 +355,21 @@
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="@+id/textView"
         app:srcCompat="@android:drawable/ic_menu_manage" />
+
+    <ImageView
+        android:id="@+id/close6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:tag="6"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/airport6"
+        app:layout_constraintEnd_toStartOf="@+id/airport6"
+        app:layout_constraintTop_toTopOf="@+id/airport6"
+        app:layout_constraintVertical_bias="0.421"
+        app:srcCompat="@android:drawable/btn_dialog" />
 
 
 </android.support.constraint.ConstraintLayout>

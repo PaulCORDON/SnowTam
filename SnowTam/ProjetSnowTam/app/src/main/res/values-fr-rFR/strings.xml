@@ -10,7 +10,7 @@
     <string name="google_maps_key">AIzaSyC1FlhgbntKfJRYl53xoaVK9txyMpd9Big</string>
     <string name="decodeSnowtam">Snowtam décodé</string>
     <string name="brutSnowtam">Snowtam crypté</string>
-    <string name="param">paramêtre</string>
+    <string name="param">paramètre</string>
     <string name="cryptage">Voir le snowtam crypté d abord : </string>
     <string name="mapFirst">Voir le snowtam d abord : </string>
     <string name="save">Sauvegarder</string>
