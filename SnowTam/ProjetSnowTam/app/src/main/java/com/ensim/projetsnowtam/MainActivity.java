@@ -37,12 +37,19 @@ public class MainActivity extends AppCompatActivity {
 
     public int nbrAirport = 1;
     public int[] choixAirport = new int[6];
-
+    private Integer index = 0;
     public Parametre parametre = new Parametre("",false,false);
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+         /* liste des aeroport qui sont sur le trajet (à dessiner) */
+        final ArrayList<String> listAirport = new ArrayList<String>();
+                /* liste des aeroports pour lequelles on veut seulement des informations */
+        final ArrayList<String> listAirportInfos = new ArrayList<String>();
+        final ArrayList<AirportResult> listAirportResult = new ArrayList<AirportResult>();
+
         choixAirport[0] = 1;
         choixAirport[1] = 2;
         choixAirport[2] = 3;
@@ -50,6 +57,18 @@ public class MainActivity extends AppCompatActivity {
         choixAirport[4] = 5;
         choixAirport[5] = 6;
 
+        Intent intent = getIntent();
+        if (intent != null) {
+            index = intent.getIntExtra("index", 0);
+
+            if (index == 99) {
+                Intent intent2 = new Intent(MainActivity.this, MapsActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("listAirPort", listAirportResult);
+                intent2.putExtras(bundle);
+                startActivity(intent2);
+            }
+        }
 
         try {
             FileInputStream fis = openFileInput("Param.txt");
@@ -111,11 +130,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                /* liste des aeroport qui sont sur le trajet (à dessiner) */
-                final ArrayList<String> listAirport = new ArrayList<String>();
-                /* liste des aeroports pour lequelles on veut seulement des informations */
-                final ArrayList<String> listAirportInfos = new ArrayList<String>();
-                final ArrayList<AirportResult> listAirportResult = new ArrayList<AirportResult>();
+
 
 
                 for(int i = 0;i<nbrAirport;i++){

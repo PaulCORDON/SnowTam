@@ -1,6 +1,7 @@
 package com.ensim.projetsnowtam;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 
@@ -39,6 +41,7 @@ public class SnowtamFragment extends Fragment {
 
         final Button decodedBtn = (Button) view.findViewById(R.id.decodeBtn);
         final Button rawBtn = (Button)view.findViewById(R.id.brutBtn);
+        final ImageButton mapBtn = (ImageButton) view.findViewById(R.id.ButtonMap);
 
         final TextView title =(TextView) view.findViewById(R.id.title);
         final TextView decodeText = (TextView) view.findViewById(R.id.textDecoded);
@@ -63,8 +66,23 @@ public class SnowtamFragment extends Fragment {
                 rawText.setVisibility(View.VISIBLE);
             }
         });
+        mapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(getActivity(), MainActivity.class);
+                Log.d(TAG,"Starting intent");
+                Bundle bundle = new Bundle();
+                bundle.putInt("index",99);
+                myIntent.putExtras(bundle);
+                startActivity(myIntent);
+            }
+        });
+
+
 
         return view;
     }
+
+
 
 }

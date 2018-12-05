@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.ensim.projetsnowtam.service.AirportResult;
 
@@ -24,17 +25,30 @@ public class SnowtamActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_snowtam);
 
+
+
         Intent intent = getIntent();
         if (intent != null){
             listAirportResult = intent.getParcelableArrayListExtra("listAirPort");
             index = intent.getIntExtra("index",0);
             Log.d(TAG,"nombre d'aéroports : "+listAirportResult.size());
+
+
         }
+
+
 
         viewPager = findViewById(R.id.pager);
         adapter = new SnowtamFragmentAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
+
+
+
     }
+
+
+
+
     private class SnowtamFragmentAdapter extends FragmentStatePagerAdapter {
         public SnowtamFragmentAdapter(FragmentManager fm) {
             super(fm);
@@ -52,4 +66,5 @@ public class SnowtamActivity extends FragmentActivity {
             return listAirportResult.size();
         }
     }
+
 }
