@@ -1,8 +1,7 @@
 package com.ensim.projetsnowtam;
 
 
-import android.content.Intent;
-import android.graphics.Color;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -14,23 +13,14 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.ensim.projetsnowtam.service.Parametre;
-import com.ensim.projetsnowtam.service.AirportResult;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PolylineOptions;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 
 /**
@@ -46,12 +36,11 @@ public class SnowtamFragment extends Fragment  implements OnMapReadyCallback {
     public SnowtamFragment() {
         // Required empty public constructor
     }
+
+    /*on instancie un nouveau fragment*/
     public static SnowtamFragment newInstance(String title, String snowtamBrut, String snowtamDecoded, double latitude, double longitude, Parametre param) {
         SnowtamFragment fragment = new SnowtamFragment();
         Bundle args = new Bundle();
-//        Log.d(TAG,title);
-//        Log.d(TAG,snowtamBrut);
-//        Log.d(TAG,snowtamDecoded);
         args.putString("title", title);
         args.putString("SnowtamBrut",snowtamBrut);
         args.putString("SnowtamDecoded",snowtamDecoded);
@@ -63,6 +52,7 @@ public class SnowtamFragment extends Fragment  implements OnMapReadyCallback {
         return fragment;
     }
 
+    /*on remplit le fragment en récupérant les données de l'instanciations*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -86,7 +76,7 @@ public class SnowtamFragment extends Fragment  implements OnMapReadyCallback {
         title.setText(title1);
         rawText.setText(snowtamBrut);
         decodeText.setText(snowtamDecoded);
-Log.d("parametres" , "" + parametre.isChoixDecryptage());
+        Log.d("parametres" , "" + parametre.isChoixDecryptage());
         if(!parametre.isChoixDecryptage()){
             decodeText.setVisibility(View.GONE);
             rawText.setVisibility(View.VISIBLE);
@@ -95,6 +85,7 @@ Log.d("parametres" , "" + parametre.isChoixDecryptage());
             rawText.setVisibility(View.GONE);
         }
 
+        /*Si on clic sur sur le bouton decoded snowtam on affiche le snowtam décodé*/
         decodedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,6 +93,7 @@ Log.d("parametres" , "" + parametre.isChoixDecryptage());
                 rawText.setVisibility(View.GONE);
             }
         });
+        /*Si on clic sur sur le bouton raw snowtam on affiche le snowtam brut*/
         rawBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,21 +101,11 @@ Log.d("parametres" , "" + parametre.isChoixDecryptage());
                 rawText.setVisibility(View.VISIBLE);
             }
         });
-//        mapBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent myIntent = new Intent(getActivity(), MainActivity.class);
-//                Log.d(TAG,"Starting intent");
-//                Bundle bundle = new Bundle();
-//                bundle.putInt("index",99);
-//                myIntent.putExtras(bundle);
-//                startActivity(myIntent);
-//            }
-//        });
+
         return view;
     }
 
-
+    /*On centre la carte sur l'aéroport en zoomant dessus*/
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;

@@ -65,13 +65,13 @@ public class SnowtamActivity extends FragmentActivity {
         public SnowtamFragmentAdapter(FragmentManager fm) {
             super(fm);
         }
-
+        /*On instancie le fragment selon la position dans le swipe*/
         @Override
         public Fragment getItem(int position) {
 
             return SnowtamFragment.newInstance(listAirportResult.get((position+index)%listAirportResult.size()).getICAO_Code(),listAirportResult.get((position+index)%listAirportResult.size()).getSnowtam(),listAirportResult.get((position+index)%listAirportResult.size()).getSnowtamDecoded(),listAirportResult.get((position+index)%listAirportResult.size()).getLatitude(),listAirportResult.get((position+index)%listAirportResult.size()).getLongitude(),parametre);
         }
-
+        /*On retourne le nombre de fragments qui est égual au nombre d'aéroport*/
         @Override
         public int getCount() {
             Log.d(TAG,"nombre de pages : "+listAirportResult.size());
