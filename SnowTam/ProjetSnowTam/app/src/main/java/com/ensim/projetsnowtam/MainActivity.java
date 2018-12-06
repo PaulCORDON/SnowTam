@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
          /* liste des aeroport qui sont sur le trajet (à dessiner) */
         final ArrayList<String> listAirport = new ArrayList<String>();
-                /* liste des aeroports pour lequelles on veut seulement des informations */
+        /* liste des aeroports pour lequelles on veut seulement des informations */
         final ArrayList<String> listAirportInfos = new ArrayList<String>();
         final ArrayList<AirportResult> listAirportResult = new ArrayList<AirportResult>();
 
@@ -57,19 +57,7 @@ public class MainActivity extends AppCompatActivity {
         choixAirport[4] = 5;
         choixAirport[5] = 6;
 
-//        Intent intent = getIntent();
-//        if (intent != null) {
-//            index = intent.getIntExtra("index", 0);
-//
-//            if (index == 99) {
-//                Intent intent2 = new Intent(MainActivity.this, MapsActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putParcelableArrayList("listAirPort", listAirportResult);
-//                intent2.putExtras(bundle);
-//                startActivity(intent2);
-//            }
-//        }
-
+    /** Récuperation des parametres si ils y en a déjà eu sur le téléphone. **/
         try {
             FileInputStream fis = openFileInput("Param.txt");
             ObjectInputStream ois = new ObjectInputStream(fis);
@@ -98,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
         final EditText airport6 = (EditText) findViewById(R.id.airport6);
 
 
-
         final ImageView close2 = (ImageView) findViewById(R.id.close2);
         final ImageView close3 = (ImageView) findViewById(R.id.close3);
         final ImageView close4 = (ImageView) findViewById(R.id.close4);
@@ -114,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
         final Button ajout = (Button) findViewById(R.id.Ajouter);
 
-
+        /** Bouton pour acceder aux parametres*/
         param.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -125,11 +112,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
+        /** Fonction de recherche **/
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                /** on nettoie les listes dans le cas où on revis sur cette page */
                 listAirport.clear();
                 listAirportInfos.clear();
                 listAirportResult.clear();
@@ -137,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
                     listAirport.add("");
                     Log.d("tableau" ,"value" + choixAirport[i]);
                 }
+
+                /** Si les aeroports sont visibles alors on récupere les expressions qui sont à dans les champs */
                 if(airport1.getVisibility() == View.VISIBLE ){
 
                     Log.d("add" , "airport 1 : " + choixAirport[0]);
@@ -202,9 +191,10 @@ public class MainActivity extends AppCompatActivity {
                     listAirport.remove(1);
 
                 }
+
                 listAirport.removeAll(Arrays.asList(null,""));
                 Log.d("taille tableau", ""+listAirport.size());
-
+                /** affichage vérification du trajet */
                 for(String s : listAirport){
                     Log.d("listAirport" , " Airpot trajet : " + s);
                 }
@@ -213,6 +203,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 final int delimitateur = listAirport.size();
                 listAirport.addAll(listAirportInfos);
+
+                /** Pour chaque aeroport, on envoi une requete pour avoir le snowtam et la localisation **/
                 for (final String codeICAO:listAirport) {
                     if(!codeICAO.isEmpty()){
                         Response.Listener<DataSearchAirportSnowtam> responseListener = new Response.Listener<DataSearchAirportSnowtam>() {
@@ -290,7 +282,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
+/** on rajoute les aeroport au fur et à mesure **/
         ajout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -324,6 +316,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        /** Suppression des aeroports, on prend la valeur en dessous si il y en avais une **/
         close2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -473,7 +467,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+/** Sélection de l'ordre du trajet **/
         imgAirport1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -616,27 +610,5 @@ public class MainActivity extends AppCompatActivity {
                 return R.drawable.escales;
         }
     }
-
-    int returnOrdre(int a){
-        switch (a){
-            case R.drawable.departures:
-                return 1;
-            case R.drawable.arrivals:
-                return 6;
-            case R.drawable.escales1:
-                return 2;
-            case R.drawable.escales2:
-                return 3;
-            case R.drawable.escales3:
-                return 4;
-            case R.drawable.escales4:
-                return 5;
-            case 10:
-                return R.drawable.escales;
-            default:
-                return R.drawable.escales;
-        }
-    }
-
 
 }
