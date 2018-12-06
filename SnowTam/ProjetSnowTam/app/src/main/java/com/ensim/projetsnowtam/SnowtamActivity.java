@@ -53,15 +53,9 @@ public class SnowtamActivity extends FragmentActivity {
 
 
         }
-
-
-
         viewPager = findViewById(R.id.pager);
         adapter = new SnowtamFragmentAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
-
-
-
     }
 
 

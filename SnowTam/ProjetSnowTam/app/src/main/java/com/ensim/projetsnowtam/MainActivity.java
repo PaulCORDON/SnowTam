@@ -132,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
                 listAirport.clear();
                 listAirportInfos.clear();
+                listAirportResult.clear();
                 for(int i = 0;i<nbrAirport;i++){
                     listAirport.add("");
                     Log.d("tableau" ,"value" + choixAirport[i]);
@@ -261,6 +262,9 @@ public class MainActivity extends AppCompatActivity {
                                                 }
 
                                             }
+                                            else{
+                                                Log.d(TAG,"taille de listeAirPortResult : "+listAirportResult.size()+"\n taille de liste Airport : "+listAirport.size());
+                                            }
                                         }
                                     };
                                     Response.ErrorListener errorListener2=new Response.ErrorListener(){
@@ -271,6 +275,7 @@ public class MainActivity extends AppCompatActivity {
                                     };
                                     ApiService.INSTANCE.searchAirportLocation(Uri.encode(codeICAO2), responseListener2, errorListener2,MainActivity.this);
                                 }
+
                             }
                         };
                         Response.ErrorListener errorListener=new Response.ErrorListener(){

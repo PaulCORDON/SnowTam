@@ -65,12 +65,6 @@ public class SnowtamFragment extends Fragment  implements OnMapReadyCallback {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-
-
-
-
-
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_snowtam, container, false);
 
@@ -126,9 +120,6 @@ Log.d("parametres" , "" + parametre.isChoixDecryptage());
 //                startActivity(myIntent);
 //            }
 //        });
-
-
-
         return view;
     }
 
