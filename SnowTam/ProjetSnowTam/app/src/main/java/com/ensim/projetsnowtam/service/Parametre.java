@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.io.Serializable;
-
+/**  Classe des parametres de l'applcation*/
 public class Parametre implements Serializable, Parcelable {
 
 
