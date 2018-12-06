@@ -12,16 +12,29 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.ensim.projetsnowtam.service.Parametre;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class SnowtamFragment extends Fragment {
     private static final String TAG = "SnowtamFragment";
+    public Parametre parametre = new Parametre("",false,false);
+
+
+
     public SnowtamFragment() {
         // Required empty public constructor
     }
-    public static SnowtamFragment newInstance(String title,String snowtamBrut, String snowtamDecoded) {
+    public static SnowtamFragment newInstance(String title,String snowtamBrut, String snowtamDecoded, Parametre param) {
         SnowtamFragment fragment = new SnowtamFragment();
         Bundle args = new Bundle();
         Log.d(TAG,title);
@@ -30,12 +43,20 @@ public class SnowtamFragment extends Fragment {
         args.putString("title", title);
         args.putString("SnowtamBrut",snowtamBrut);
         args.putString("SnowtamDecoded",snowtamDecoded);
+        args.putParcelable("param",param);
         fragment.setArguments(args);
+
         return fragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+
+
+
+
+
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_snowtam, container, false);
 
@@ -49,9 +70,19 @@ public class SnowtamFragment extends Fragment {
         String title1 = getArguments().getString("title");
         String snowtamBrut = getArguments().getString("SnowtamBrut");
         String snowtamDecoded = getArguments().getString("SnowtamDecoded");
+        parametre = (Parametre) getArguments().get("param");
         title.setText(title1);
         rawText.setText(snowtamBrut);
         decodeText.setText(snowtamDecoded);
+Log.d("parametres" , "" + parametre.isChoixDecryptage());
+        if(!parametre.isChoixDecryptage()){
+            decodeText.setVisibility(View.GONE);
+            rawText.setVisibility(View.VISIBLE);
+        }else{
+            decodeText.setVisibility(View.VISIBLE);
+            rawText.setVisibility(View.GONE);
+        }
+
         decodedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
