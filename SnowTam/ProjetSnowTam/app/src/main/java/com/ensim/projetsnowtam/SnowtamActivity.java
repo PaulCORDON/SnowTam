@@ -11,7 +11,12 @@ import android.util.Log;
 import android.view.View;
 
 import com.ensim.projetsnowtam.service.AirportResult;
+import com.ensim.projetsnowtam.service.Parametre;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 public class SnowtamActivity extends FragmentActivity {
@@ -20,12 +25,25 @@ public class SnowtamActivity extends FragmentActivity {
     private SnowtamFragmentAdapter adapter;
     private ArrayList<AirportResult> listAirportResult = new ArrayList<AirportResult>();
     private Integer index = 0;
+    public Parametre parametre = new Parametre("",false,false);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_snowtam);
 
-
+        try {
+            FileInputStream fis = openFileInput("Param.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            parametre = (Parametre) ois.readObject();
+            Log.d("Param de base recup: ",""+ parametre.isChoixAffichage() + parametre.isChoixDecryptage());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         Intent intent = getIntent();
         if (intent != null){
@@ -57,6 +75,7 @@ public class SnowtamActivity extends FragmentActivity {
         @Override
         public Fragment getItem(int position) {
 
+            return SnowtamFragment.newInstance(listAirportResult.get((position+index)%listAirportResult.size()).getICAO_Code(),listAirportResult.get((position+index)%listAirportResult.size()).getSnowtam(),listAirportResult.get((position+index)%listAirportResult.size()).getSnowtamDecoded(),parametre);
             return SnowtamFragment.newInstance(listAirportResult.get((position+index)%listAirportResult.size()).getICAO_Code(),listAirportResult.get((position+index)%listAirportResult.size()).getSnowtam(),listAirportResult.get((position+index)%listAirportResult.size()).getSnowtamDecoded(),listAirportResult.get((position+index)%listAirportResult.size()).getLatitude(),listAirportResult.get((position+index)%listAirportResult.size()).getLongitude());
         }
 
