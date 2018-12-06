@@ -46,8 +46,7 @@ public class SnowtamFragment extends Fragment  implements OnMapReadyCallback {
     public SnowtamFragment() {
         // Required empty public constructor
     }
-    public static SnowtamFragment newInstance(String title,String snowtamBrut, String snowtamDecoded, Parametre param) {
-    public static SnowtamFragment newInstance(String title, String snowtamBrut, String snowtamDecoded, double latitude, double longitude) {
+    public static SnowtamFragment newInstance(String title, String snowtamBrut, String snowtamDecoded, double latitude, double longitude, Parametre param) {
         SnowtamFragment fragment = new SnowtamFragment();
         Bundle args = new Bundle();
 //        Log.d(TAG,title);

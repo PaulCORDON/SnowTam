@@ -6,7 +6,7 @@
     <string name="Snowtam">Snowtam</string>
     <string name="AddAirport">Ajouter un aéroport</string>
     <string name="title_activity_maps">Carte</string>
-    <string name="CodeICAO">code ICAO</string>
+    <string name="CodeICAO">code OACI</string>
     <string name="google_maps_key">AIzaSyC1FlhgbntKfJRYl53xoaVK9txyMpd9Big</string>
     <string name="decodeSnowtam">Snowtam décodé</string>
     <string name="brutSnowtam">Snowtam crypté</string>
@@ -14,7 +14,10 @@
     <string name="cryptage">Voir le snowtam crypté d abord : </string>
     <string name="mapFirst">Voir le snowtam d abord : </string>
     <string name="save">Sauvegarder</string>
+    <string name="FalseICAOcode">Faux code OACI</string>
+    <string name="isNotAICAOcode">n\'est pas une code OACI correct</string>
     <string name="seeFirst">Afficher en premier :</string>
+
 
     <string-array name="langues">
         <item>English</item>
