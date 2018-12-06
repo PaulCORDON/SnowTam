@@ -2,6 +2,7 @@ package com.ensim.projetsnowtam;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -12,24 +13,38 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.ensim.projetsnowtam.service.AirportResult;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SnowtamFragment extends Fragment {
+public class SnowtamFragment extends Fragment  implements OnMapReadyCallback {
     private static final String TAG = "SnowtamFragment";
+    private GoogleMap mMap;
     public SnowtamFragment() {
         // Required empty public constructor
     }
-    public static SnowtamFragment newInstance(String title,String snowtamBrut, String snowtamDecoded) {
+    public static SnowtamFragment newInstance(String title, String snowtamBrut, String snowtamDecoded, double latitude, double longitude) {
         SnowtamFragment fragment = new SnowtamFragment();
         Bundle args = new Bundle();
-        Log.d(TAG,title);
-        Log.d(TAG,snowtamBrut);
-        Log.d(TAG,snowtamDecoded);
+//        Log.d(TAG,title);
+//        Log.d(TAG,snowtamBrut);
+//        Log.d(TAG,snowtamDecoded);
         args.putString("title", title);
         args.putString("SnowtamBrut",snowtamBrut);
         args.putString("SnowtamDecoded",snowtamDecoded);
+        args.putDouble("latitude",latitude);
+        args.putDouble("longitude",longitude);
         fragment.setArguments(args);
         return fragment;
     }
@@ -46,6 +61,10 @@ public class SnowtamFragment extends Fragment {
         final TextView title =(TextView) view.findViewById(R.id.title);
         final TextView decodeText = (TextView) view.findViewById(R.id.textDecoded);
         final TextView rawText = (TextView) view.findViewById(R.id.textRaw);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.map2);
+        mapFragment.getMapAsync(this);
+
         String title1 = getArguments().getString("title");
         String snowtamBrut = getArguments().getString("SnowtamBrut");
         String snowtamDecoded = getArguments().getString("SnowtamDecoded");
@@ -66,17 +85,17 @@ public class SnowtamFragment extends Fragment {
                 rawText.setVisibility(View.VISIBLE);
             }
         });
-        mapBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent myIntent = new Intent(getActivity(), MainActivity.class);
-                Log.d(TAG,"Starting intent");
-                Bundle bundle = new Bundle();
-                bundle.putInt("index",99);
-                myIntent.putExtras(bundle);
-                startActivity(myIntent);
-            }
-        });
+//        mapBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent myIntent = new Intent(getActivity(), MainActivity.class);
+//                Log.d(TAG,"Starting intent");
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("index",99);
+//                myIntent.putExtras(bundle);
+//                startActivity(myIntent);
+//            }
+//        });
 
 
 
@@ -84,5 +103,15 @@ public class SnowtamFragment extends Fragment {
     }
 
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        LatLng currentAirport = new LatLng(getArguments().getDouble("latitude"),getArguments().getDouble("longitude"));
+        mMap.addMarker(new MarkerOptions().position(currentAirport).title("COUCOU"));
+        CameraUpdate location = CameraUpdateFactory.newLatLngZoom(currentAirport,14.0f);
+        mMap.animateCamera(location);
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
+
+    }
 }

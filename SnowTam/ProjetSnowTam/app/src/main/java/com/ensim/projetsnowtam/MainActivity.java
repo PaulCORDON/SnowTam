@@ -57,18 +57,18 @@ public class MainActivity extends AppCompatActivity {
         choixAirport[4] = 5;
         choixAirport[5] = 6;
 
-        Intent intent = getIntent();
-        if (intent != null) {
-            index = intent.getIntExtra("index", 0);
-
-            if (index == 99) {
-                Intent intent2 = new Intent(MainActivity.this, MapsActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putParcelableArrayList("listAirPort", listAirportResult);
-                intent2.putExtras(bundle);
-                startActivity(intent2);
-            }
-        }
+//        Intent intent = getIntent();
+//        if (intent != null) {
+//            index = intent.getIntExtra("index", 0);
+//
+//            if (index == 99) {
+//                Intent intent2 = new Intent(MainActivity.this, MapsActivity.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putParcelableArrayList("listAirPort", listAirportResult);
+//                intent2.putExtras(bundle);
+//                startActivity(intent2);
+//            }
+//        }
 
         try {
             FileInputStream fis = openFileInput("Param.txt");
@@ -130,14 +130,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
-
+                listAirport.clear();
+                listAirportInfos.clear();
                 for(int i = 0;i<nbrAirport;i++){
                     listAirport.add("");
                     Log.d("tableau" ,"value" + choixAirport[i]);
                 }
                 if(airport1.getVisibility() == View.VISIBLE ){
+
                     Log.d("add" , "airport 1 : " + choixAirport[0]);
                     if (choixAirport[0]-1>=nbrAirport){
                         listAirportInfos.add(airport1.getText().toString());
@@ -212,17 +212,14 @@ public class MainActivity extends AppCompatActivity {
                 }
                 final int delimitateur = listAirport.size();
                 listAirport.addAll(listAirportInfos);
-                //Log.d(TAG,listAirport.size()+" SSSSSSSSSSSSIIIIIIIIIIZZZZZ");
                 for (final String codeICAO:listAirport) {
                     if(!codeICAO.isEmpty()){
                         Response.Listener<DataSearchAirportSnowtam> responseListener = new Response.Listener<DataSearchAirportSnowtam>() {
                             @Override
                             public void onResponse(DataSearchAirportSnowtam response) {
-
-                                if(!response.getData().isEmpty()){
-                                    Log.d(TAG,response.getData().get(response.getData().size()-1).getAll());
+                                if(response.getData().size()>0){
+                                    //Log.d(TAG,response.getData().get(response.getData().size()-1).getAll());
                                     listAirportResult.add(new AirportResult());
-                                    //Log.d(TAG,listAirportResult.size()+" SIZZZZZZZZZZZZE");
                                     listAirportResult.get(listAirportResult.size()-1).setSnowtam(response.getData().get(response.getData().size()-1).getAll().contains("SNOWTAM")?response.getData().get(response.getData().size()-1).getAll():"No Snowtam" );
                                     listAirportResult.get(listAirportResult.size()-1).setSnowtamDecoded(response.getData().get(response.getData().size()-1).getAll().contains("SNOWTAM")?response.getData().get(response.getData().size()-1).getAll():"No Snowtam" );
                                     listAirportResult.get(listAirportResult.size()-1).setICAO_Code(response.getData().get(response.getData().size()-1).getLocation());
@@ -239,8 +236,8 @@ public class MainActivity extends AppCompatActivity {
                                     Response.Listener<DataSearchAirportLocation> responseListener2 = new Response.Listener<DataSearchAirportLocation>() {
                                         @Override
                                         public void onResponse(DataSearchAirportLocation response) {
-                                            Log.d(TAG,"Latitude = "+response.getData().get(response.getData().size()-1).getLatitude());
-                                            Log.d(TAG,"Longitude = "+response.getData().get(response.getData().size()-1).getLongitude());
+                                            //Log.d(TAG,"Latitude = "+response.getData().get(response.getData().size()-1).getLatitude());
+                                            //Log.d(TAG,"Longitude = "+response.getData().get(response.getData().size()-1).getLongitude());
                                             for(AirportResult ar : listAirportResult){
                                                 if(ar.getICAO_Code().equals(codeICAO2)){
                                                     ar.setLatitude(response.getData().get(response.getData().size()-1).getLatitude());
@@ -273,21 +270,6 @@ public class MainActivity extends AppCompatActivity {
                                         }
                                     };
                                     ApiService.INSTANCE.searchAirportLocation(Uri.encode(codeICAO2), responseListener2, errorListener2,MainActivity.this);
-                                }
-                                else{
-                                    Log.d(TAG,"reponse vide pour "+codeICAO);
-                                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                                    builder.setCancelable(true);
-                                    builder.setTitle(getString(R.string.FalseICAOcode));
-                                    builder.setMessage(codeICAO+" "+getString(R.string.isNotAICAOcode));
-                                    builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                        }
-                                    });
-
-                                    AlertDialog dialog = builder.create();
-                                    dialog.show();
                                 }
                             }
                         };

@@ -58,6 +58,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             mMap.addMarker(new MarkerOptions().position(currentAirport).title(apr.getICAO_Code()));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(currentAirport));
+            mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
         }
         mMap.addPolyline(polylineOptions.width(5).color(Color.RED).geodesic(true));
